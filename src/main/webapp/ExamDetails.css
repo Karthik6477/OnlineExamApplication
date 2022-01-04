@@ -1,0 +1,6 @@
+body{
+    background: linear-gradient(to right, springgreen, rgb(253, 253, 53));
+  }
+.homeDesign:hover .homeDesign:active{
+  background-color: black;
+}
