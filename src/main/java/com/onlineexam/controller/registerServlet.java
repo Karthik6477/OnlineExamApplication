@@ -1,8 +1,10 @@
 package com.onlineexam.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.onlineexam.exception.EmailAlreadyExistException;
 import com.onlineexam.impl.RegisterDao;
 import com.onlineexam.model.RegisterPojo;
 
@@ -25,6 +27,10 @@ public class registerServlet extends HttpServlet{
 		RegisterDao rdao=new RegisterDao();
 		try {
 			rdao.fetchregister(rd);
+//			ResultSet rs=rdao.getUserDetails(rd);
+//			if(email.equals(rs.getString(4))) {
+//				throw new EmailAlreadyExistException();
+//			}
 			res.sendRedirect("index.jsp");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -32,6 +38,11 @@ public class registerServlet extends HttpServlet{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
+//		catch (EmailAlreadyExistException ea) {
+//			// TODO Auto-generated catch block
+//			String clear=ea.emailexist();
+//			res.sendRedirect(clear);
+//		}
 	}
 }

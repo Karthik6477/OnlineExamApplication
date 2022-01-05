@@ -12,17 +12,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class LoginDao implements LoginDaoInterface {
-	public boolean fetchlogin(LoginPojo lc) throws SQLException, ClassNotFoundException {
+	public ResultSet fetchlogin(LoginPojo lc) throws SQLException, ClassNotFoundException {
 		Connection con=ConnectionPage.connection();
 		String query="select * from registerPage where email=? and password=?";
 		PreparedStatement ps=con.prepareStatement(query);
 		ps.setString(1, lc.getUsername());
 		ps.setString(2, lc.getPassword());
-		int i = ps.executeUpdate();
-		if(i > 0)
-			return true;
-		else
-			return false;
+		ResultSet rs= ps.executeQuery();
+		return rs;
 		
 	}
 	

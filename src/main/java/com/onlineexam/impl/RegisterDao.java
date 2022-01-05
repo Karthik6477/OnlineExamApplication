@@ -5,6 +5,7 @@ import com.onlineexam.util.ConnectionPage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RegisterDao implements RegisterDaoInterface {
@@ -34,5 +35,12 @@ public class RegisterDao implements RegisterDaoInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public ResultSet getUserDetails(RegisterPojo rp) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="select * from registerPage";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		ResultSet rs=pstmt.executeQuery();
+		return rs;
 	}
 }

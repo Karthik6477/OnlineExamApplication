@@ -38,7 +38,7 @@ font-weight:bold;
 font-size:130%;
 background-color:rgb(250, 156, 140);
 }
-#finish{
+#finish,#feed,#hour,#min,#colon{
 	visibility:hidden;
 }
 #startButton:hover{
@@ -60,6 +60,13 @@ text-align:center;
 #buttons{
 visibility:hidden;
 }
+
+#home{
+float: right;
+margin-right:10px;
+margin-top:-70px;
+font-size:x-large;
+}
 </style>
 <title>CSS Exam</title>
 </head>
@@ -68,8 +75,9 @@ visibility:hidden;
 	%>
 	
 	<h2><u>CSS Exam</u></h2>
+	<a id="home" href="UserMain.jsp"><h4>Home</h4></a>
 	<div id="clock">
-    <b id="hour">--</b><label> &nbsp;:&nbsp;</label><b id="min">--</b>
+    <b id="hour"></b><label> &nbsp;<span id="colon">:</span>&nbsp;</label><b id="min"></b>
 </div>
 <br> <button id="startButton" onclick="clcok()">Start</button>
 	
@@ -178,6 +186,8 @@ visibility:hidden;
 <%int userid= (int)session.getAttribute("userid");
 int examId=Integer.parseInt(request.getParameter("examid"));
 String examName=request.getParameter("examName");
+HttpSession session1=request.getSession();
+int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 %>
 <div id="finish">
 <form action="scoreDetails" >
@@ -197,7 +207,7 @@ String examName=request.getParameter("examName");
 <button>Send feedback</button>
 </form></div>-->
 <div id="feed">
-<a href="feedbackDetails.jsp?examid=<%=examId%>&userid=<%=userid%>"><button>Send feedback</button></a>
+<a href="feedbackDetails.jsp?examid=<%=examId%>&userid=<%=userid%>"><button >Send feedback</button></a>
 </div>
 </body>
 </html>
@@ -343,6 +353,7 @@ function ans(){
 		
 		document.getElementById("finish").style.visibility="visible";
 		document.getElementById("feed").style.visibility="visible";
+		document.getElementById("home").style.visibility="visible";
 		console.log(mark);
 		document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
 		//return mark;
@@ -567,10 +578,14 @@ document.getElementById("hour").style.color="green";
 document.getElementById("min").style.color="green";    
 
 var min=0;
-var hour=10;
+var hour=<%=duration%>;
 var inter=0;
 function clcok(){
 	document.getElementById("buttons").style.visibility="visible";
+	document.getElementById("home").style.visibility="hidden";
+	document.getElementById("hour").style.visibility="visible";
+	document.getElementById("min").style.visibility="visible";
+	document.getElementById("colon").style.visibility="visible";
 	document.getElementById("startButton").style.visibility="hidden";
 	document.getElementById("question1").style.visibility="visible";
     document.getElementById("question2").style.visibility="hidden";
@@ -736,6 +751,7 @@ if(hour==0 && min==0)  {
 		
 		document.getElementById("finish").style.visibility="visible";
 		document.getElementById("feed").style.visibility="visible";
+		document.getElementById("home").style.visibility="visible";
 		console.log(mark);
 		document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
 		//return mark;

@@ -69,6 +69,7 @@ create table contactUs(
 userid number,
 email varchar2(40),
 comments varchar2(300),
+commentDate date,
 primary key(userid),
 foreign key(userid) references registerPage(id),
 foreign key(email) references registerPage(email)

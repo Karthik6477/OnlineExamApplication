@@ -3,6 +3,7 @@ package com.onlineexam.controller;
 import java.io.IOException;
 import java.sql.ResultSet;
 
+import com.onlineexam.exception.InvalidUserException;
 import com.onlineexam.impl.LoginDao;
 import com.onlineexam.model.LoginPojo;
 
@@ -22,8 +23,8 @@ public class loginServlet extends HttpServlet
 		LoginDao ld=new LoginDao();
 		int userid;
 		try {
-			boolean flag=ld.fetchlogin(lp);
-			if(flag) {
+			ResultSet result=ld.fetchlogin(lp);
+			if(result.next()) {
 				//res.sendRedirect("AdminMain.html");
 				ResultSet rs=ld.validUser(email, password);
 				rs.next();
@@ -33,21 +34,31 @@ public class loginServlet extends HttpServlet
 				ses.setAttribute("userid", userid);
 				
 				
-				
 				String role=rs.getString(8);
 				if(role.equals("admin")) {
 					res.sendRedirect("AdminMain.html");
 				}
-				else {
+				else if(role.equals("student")){
 					res.sendRedirect("UserMain.jsp");
 				}
-			}else {
-				HttpSession session=req.getSession();
-				session.setAttribute("loginResult","Invalid username or password");
-				res.sendRedirect("index.jsp");
-			
-				//res.getWriter().println("Invalid Username or password!!");
+				
+				else {
+					HttpSession session=req.getSession();
+					session.setAttribute("loginResult","Invalid username or password");
+					res.sendRedirect("index.jsp");
+				
+					//res.getWriter().println("Invalid Username or password!!");
+				}
 			}
+			else {
+				throw new InvalidUserException();
+			}}
+			catch(InvalidUserException iv) {
+				String clear=iv.invaliduser();
+				res.sendRedirect(clear);
+			
+			
+//			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
