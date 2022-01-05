@@ -20,7 +20,7 @@
         <button type="submit">Submit</button>
         <button type="reset">Reset</button><br><br>
         <a href="UserPasswordUpdateServlet.jsp">Forgot Password?</a><br><br>
-        Don't have an account<a href="register.html" class="newUserMove" title="You have to sign-up!">New user?</a>
+        Don't have an account<a href="Register.jsp" class="newUserMove" title="You have to sign-up!">New user?</a>
       
     </div>
 </form>

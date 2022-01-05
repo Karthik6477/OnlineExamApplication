@@ -12,11 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 @WebServlet("/register")
 public class registerServlet extends HttpServlet{
 	
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException {
 		PrintWriter out=res.getWriter();
+		HttpSession session=req.getSession();
 		String firstName=req.getParameter("firstName");
 		String lastName=req.getParameter("lastName");
 		String email=req.getParameter("email");
@@ -26,11 +28,19 @@ public class registerServlet extends HttpServlet{
 		RegisterPojo rd=new RegisterPojo(firstName, lastName, email, password,confirm_password, phone_number);
 		RegisterDao rdao=new RegisterDao();
 		try {
+			
+			ResultSet rs=rdao.getEmailDetails(rd);
+			rs.next();
+			if(email.equals(rs.getString(4))) {
+				throw new EmailAlreadyExistException();
+			}
+			ResultSet rs1=rdao.getPhoneDetails(rd);
+			rs1.next();
+			
+			if(phone_number.equals(rs1.getLong(7))) {
+				throw new PhoneNumberExistException();
+			}
 			rdao.fetchregister(rd);
-//			ResultSet rs=rdao.getUserDetails(rd);
-//			if(email.equals(rs.getString(4))) {
-//				throw new EmailAlreadyExistException();
-//			}
 			res.sendRedirect("index.jsp");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -39,10 +49,17 @@ public class registerServlet extends HttpServlet{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-//		catch (EmailAlreadyExistException ea) {
-//			// TODO Auto-generated catch block
-//			String clear=ea.emailexist();
-//			res.sendRedirect(clear);
-//		}
+		catch (EmailAlreadyExistException ea) {
+			// TODO Auto-generated catch block
+			String clear=ea.emailexist();
+			session.setAttribute("emailexist","Email already exist");
+			res.sendRedirect(clear);
+		} 
+		catch (PhoneNumberExistException pn) {
+			// TODO Auto-generated catch block
+			String Error=pn.phoneNumberExist();
+			session.setAttribute("phonenumberexist","Phone number already exist");
+			res.sendRedirect(Error);
+		}
 	}
 }

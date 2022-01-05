@@ -36,10 +36,19 @@ public class RegisterDao implements RegisterDaoInterface {
 			e.printStackTrace();
 		}
 	}
-	public ResultSet getUserDetails(RegisterPojo rp) throws SQLException {
+	public ResultSet getEmailDetails(RegisterPojo rp) throws SQLException {
 		Connection con=ConnectionPage.connection();
-		String query="select * from registerPage";
+		String query="select * from registerPage where email=?";
 		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setString(1, rp.getEmail());
+		ResultSet rs=pstmt.executeQuery();
+		return rs;
+	}
+	public ResultSet getPhoneDetails(RegisterPojo rp) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="select * from registerPage where phone_number=?";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setLong(1, rp.getPhone_number());
 		ResultSet rs=pstmt.executeQuery();
 		return rs;
 	}
