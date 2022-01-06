@@ -28,12 +28,11 @@ public class ExamDetailsDao implements ExamDetailsDaoInterface{
 	}
 	public  boolean updateExam(ExamDetailsPojo edp) throws SQLException {
 		Connection con=ConnectionPage.connection();
-		String query="update examDetails set examtype=?,difficultylevel=?,durationMinutes=? where examid=?";
+		String query="update examDetails set difficultylevel=?,durationMinutes=? where examid=?";
 			PreparedStatement pstmt=con.prepareStatement(query);
-			pstmt.setString(1, edp.getExamType());
-			pstmt.setString(2, edp.getDifficultyLevel());
-			pstmt.setInt(3, edp.getDurationMinutes());
-			pstmt.setInt(4, edp.getExamId());
+			pstmt.setString(1, edp.getDifficultyLevel());
+			pstmt.setInt(2, edp.getDurationMinutes());
+			pstmt.setInt(3, edp.getExamId());
 			i=pstmt.executeUpdate();
 			if(i>0) {
 				return true;
@@ -48,6 +47,7 @@ public class ExamDetailsDao implements ExamDetailsDaoInterface{
 		PreparedStatement pstmt=con.prepareStatement(query);
 		pstmt.setInt(1, edp.getExamId());
 		i=pstmt.executeUpdate();
+		System.out.println(i);
 		if(i>0) {
 			return true;
 		}

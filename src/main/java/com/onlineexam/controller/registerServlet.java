@@ -30,16 +30,23 @@ public class registerServlet extends HttpServlet{
 		try {
 			
 			ResultSet rs=rdao.getEmailDetails(rd);
-			rs.next();
-			if(email.equals(rs.getString(4))) {
-				throw new EmailAlreadyExistException();
-			}
 			ResultSet rs1=rdao.getPhoneDetails(rd);
-			rs1.next();
-			
-			if(phone_number.equals(rs1.getLong(7))) {
-				throw new PhoneNumberExistException();
+			//rs.next();
+			if(rs.next()){
+				if(email.equals(rs.getString(4))) {
+					throw new EmailAlreadyExistException();
+				}
 			}
+			
+			
+			//rs1.next();
+			if(rs1.next()) {
+				if(phone_number==(rs1.getLong(7))) {
+					throw new PhoneNumberExistException();
+				}
+			}
+			
+			
 			rdao.fetchregister(rd);
 			res.sendRedirect("index.jsp");
 		} catch (ClassNotFoundException e) {
@@ -51,15 +58,15 @@ public class registerServlet extends HttpServlet{
 		} 
 		catch (EmailAlreadyExistException ea) {
 			// TODO Auto-generated catch block
-			String clear=ea.emailexist();
-			session.setAttribute("emailexist","Email already exist");
-			res.sendRedirect(clear);
+			//String clear=ea.emailexist();
+			//session.setAttribute("emailexist","Email already exist");
+			res.sendRedirect("errorpage.jsp?message="+ea.getMessage()+"&url=Register.jsp");
 		} 
 		catch (PhoneNumberExistException pn) {
 			// TODO Auto-generated catch block
-			String Error=pn.phoneNumberExist();
-			session.setAttribute("phonenumberexist","Phone number already exist");
-			res.sendRedirect(Error);
+			//String Error=pn.phoneNumberExist();
+			//session.setAttribute("phonenumberexist","Phone number already exist");
+			res.sendRedirect("errorpage.jsp?message="+pn.getMessage()+"&url=Register.jsp");
 		}
 	}
 }

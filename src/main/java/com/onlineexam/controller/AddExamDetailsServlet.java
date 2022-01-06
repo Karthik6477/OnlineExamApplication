@@ -38,12 +38,12 @@ public class AddExamDetailsServlet extends HttpServlet {
 			if(flag) {
 				
 				session.setAttribute("addExamResult","Exam added successfully");
-				res.sendRedirect("ExamDetails.jsp");
+				res.sendRedirect("ShowExams.jsp");
 			}
 			else {
 				//HttpSession session=req.getSession();
 				session.setAttribute("addExamResult","Couldn't add exam");
-				res.sendRedirect("ExamDetails.jsp");
+				res.sendRedirect("ShowExams.jsp");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

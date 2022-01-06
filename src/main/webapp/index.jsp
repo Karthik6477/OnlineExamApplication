@@ -25,11 +25,24 @@
     </div>
 </form>
 
-    <% String error=(String)session.getAttribute("loginResult");
+   <!--  <% String error=(String)session.getAttribute("loginResult");
       	if(error!=null){%>
       		<h3 style="margin-left:565px;margin-top:563px; size:70%"><%=session.getAttribute("loginResult") %></h3>
+      	<%} %> -->
+      	
+      	<% String error1=(String)session.getAttribute("loginResult");
+      	
+      	if(error1!=null){%>
+      		<script>getError();</script> 
       	<%} %>
 
         <% session.removeAttribute("loginResult");%>
 </body>
 </html>
+<script>
+function getError(){
+	
+		alert(<%=session.getAttribute("loginResult")%>);
+	
+}
+</script>

@@ -50,10 +50,9 @@ public class ExamDetailsPojo {
 		this.durationMinutes = durationMinutes;
 	}
 	//for updating exam
-	public ExamDetailsPojo( String examType, String difficultyLevel, int durationMinutes,int examId) {
+	public ExamDetailsPojo(String difficultyLevel, int durationMinutes,int examId) {
 		super();
 		this.examId = examId;
-		this.examType = examType;
 		this.difficultyLevel = difficultyLevel;
 		this.durationMinutes = durationMinutes;
 	}

@@ -1,3 +1,5 @@
+<%@page import="com.onlineexam.controller.ShowExamDetails"%>
+<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -36,7 +38,7 @@ font-weight:bold;
 font-size:130%;
 background-color:rgb(250, 156, 140);
 }
-#finish{
+#finish,#feed,#hour,#min,#colon{
 	visibility:hidden;
 }
 #startButton:hover{
@@ -58,14 +60,24 @@ text-align:center;
 #buttons{
 visibility:hidden;
 }
+
+#home{
+float: right;
+margin-right:10px;
+margin-top:-70px;
+font-size:x-large;
+}
 </style>
 <title>HTML Exam</title>
 </head>
 <body>
+	<% ResultSet rs=ShowExamDetails.showExams();
+	%>
 	
 	<h2><u>HTML Exam</u></h2>
+	<a id="home" href="UserChooseExams1.jsp"><h4><u>Back</u></h4></a>
 	<div id="clock">
-    <b id="hour">--</b><label> &nbsp;:&nbsp;</label><b id="min">--</b>
+    <b id="hour"></b><label> &nbsp;<span id="colon">:</span>&nbsp;</label><b id="min"></b>
 </div>
 <br> <button id="startButton" onclick="clcok()">Start</button>
 	
@@ -174,6 +186,8 @@ visibility:hidden;
 <%int userid= (int)session.getAttribute("userid");
 int examId=Integer.parseInt(request.getParameter("examid"));
 String examName=request.getParameter("examName");
+HttpSession session1=request.getSession();
+int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 %>
 <div id="finish">
 <form action="scoreDetails" >
@@ -185,6 +199,16 @@ String examName=request.getParameter("examName");
 <input style="visibility:hidden;" type="text" id="grade" name="grade">
 <button>View my Exam</button>
 </form></div>
+<!--<div id="feedback">
+<form action="feedbackDetails.jsp">
+<input style="visibility:hidden;" type="text" id="examId" name="examId" value="<%=examId%>">
+<input style="visibility:hidden;" type="text" id="examName" name="examName" value="<%=examName%>">
+<input style="visibility:hidden;" type="text" id="studentId" name="uID" value="<%=userid%>"/>
+<button>Send feedback</button>
+</form></div>-->
+<div id="feed">
+<a href="feedbackDetails.jsp?examid=<%=examId%>&userid=<%=userid%>"><button >Send feedback</button></a>
+</div>
 </body>
 </html>
 <script>
@@ -328,6 +352,8 @@ function ans(){
 		}
 		
 		document.getElementById("finish").style.visibility="visible";
+		document.getElementById("feed").style.visibility="visible";
+		document.getElementById("home").style.visibility="visible";
 		console.log(mark);
 		document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
 		//return mark;
@@ -552,10 +578,14 @@ document.getElementById("hour").style.color="green";
 document.getElementById("min").style.color="green";    
 
 var min=0;
-var hour=15;
+var hour=<%=duration%>;
 var inter=0;
 function clcok(){
 	document.getElementById("buttons").style.visibility="visible";
+	document.getElementById("home").style.visibility="hidden";
+	document.getElementById("hour").style.visibility="visible";
+	document.getElementById("min").style.visibility="visible";
+	document.getElementById("colon").style.visibility="visible";
 	document.getElementById("startButton").style.visibility="hidden";
 	document.getElementById("question1").style.visibility="visible";
     document.getElementById("question2").style.visibility="hidden";
@@ -720,6 +750,8 @@ if(hour==0 && min==0)  {
 		}
 		
 		document.getElementById("finish").style.visibility="visible";
+		document.getElementById("feed").style.visibility="visible";
+		document.getElementById("home").style.visibility="visible";
 		console.log(mark);
 		document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
 		//return mark;

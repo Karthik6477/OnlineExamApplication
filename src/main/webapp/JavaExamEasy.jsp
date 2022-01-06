@@ -1,3 +1,5 @@
+<%@page import="com.onlineexam.controller.ShowExamDetails"%>
+<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -36,7 +38,7 @@ font-weight:bold;
 font-size:130%;
 background-color:rgb(250, 156, 140);
 }
-#finish{
+#finish,#feed,#hour,#min,#colon{
 	visibility:hidden;
 }
 #startButton:hover{
@@ -58,14 +60,24 @@ text-align:center;
 #buttons{
 visibility:hidden;
 }
+
+#home{
+float: right;
+margin-right:10px;
+margin-top:-70px;
+font-size:x-large;
+}
 </style>
 <title>JAVA Exam</title>
 </head>
 <body>
+	<% ResultSet rs=ShowExamDetails.showExams();
+	%>
 	
 	<h2><u>JAVA Exam</u></h2>
+	<a id="home" href="UserChooseExams.jsp"><h4><u>Back</u></h4></a>
 	<div id="clock">
-    <b id="hour">--</b><label> &nbsp;:&nbsp;</label><b id="min">--</b>
+    <b id="hour"></b><label> &nbsp;<span id="colon">:</span>&nbsp;</label><b id="min"></b>
 </div>
 <br> <button id="startButton" onclick="clcok()">Start</button>
 	
@@ -173,6 +185,8 @@ visibility:hidden;
 <%int userid= (int)session.getAttribute("userid");
 int examId=Integer.parseInt(request.getParameter("examid"));
 String examName=request.getParameter("examName");
+HttpSession session1=request.getSession();
+int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 %>
 <div id="finish">
 <form action="scoreDetails" >
@@ -184,6 +198,16 @@ String examName=request.getParameter("examName");
 <input style="visibility:hidden;" type="text" id="grade" name="grade">
 <button>View my Exam</button>
 </form></div>
+<!--<div id="feedback">
+<form action="feedbackDetails.jsp">
+<input style="visibility:hidden;" type="text" id="examId" name="examId" value="<%=examId%>">
+<input style="visibility:hidden;" type="text" id="examName" name="examName" value="<%=examName%>">
+<input style="visibility:hidden;" type="text" id="studentId" name="uID" value="<%=userid%>"/>
+<button>Send feedback</button>
+</form></div>-->
+<div id="feed">
+<a href="feedbackDetails.jsp?examid=<%=examId%>&userid=<%=userid%>"><button >Send feedback</button></a>
+</div>
 </body>
 </html>
 <script>
@@ -327,6 +351,8 @@ function ans(){
 		}
 		
 		document.getElementById("finish").style.visibility="visible";
+		document.getElementById("feed").style.visibility="visible";
+		document.getElementById("home").style.visibility="visible";
 		console.log(mark);
 		document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
 		//return mark;
@@ -551,10 +577,14 @@ document.getElementById("hour").style.color="green";
 document.getElementById("min").style.color="green";    
 
 var min=0;
-var hour=15;
+var hour=<%=duration%>;
 var inter=0;
 function clcok(){
 	document.getElementById("buttons").style.visibility="visible";
+	document.getElementById("home").style.visibility="hidden";
+	document.getElementById("hour").style.visibility="visible";
+	document.getElementById("min").style.visibility="visible";
+	document.getElementById("colon").style.visibility="visible";
 	document.getElementById("startButton").style.visibility="hidden";
 	document.getElementById("question1").style.visibility="visible";
     document.getElementById("question2").style.visibility="hidden";
@@ -607,12 +637,12 @@ if(hour==0 && min==0)  {
      document.getElementById("buttons").style.visibility="hidden";
      mark=0;
 
-		//answer 1
+   //answer 1
 		const rbs=document.querySelectorAll('input[name="answer1"]');
 		for(const rb of rbs){
 			if(rb.checked){
 				//selectedvalue=rb.value;
-				if(rb.value=="style"){
+				if(rb.value=="Bytecode is executed by JVM"){
 					mark++;
 				}
 				break;
@@ -623,7 +653,7 @@ if(hour==0 && min==0)  {
 		const rbs2=document.querySelectorAll('input[name="answer2"]');
 		for(const rb2 of rbs2){
 			if(rb2.checked){
-				if(rb2.value=="background-image"){
+				if(rb2.value=="Use of pointers"){
 					mark++;
 				}
 				break;
@@ -634,7 +664,7 @@ if(hour==0 && min==0)  {
 		const rbs3=document.querySelectorAll('input[name="answer3"]');
 		for(const rb3 of rbs3){
 			if(rb3.checked){
-				if(rb3.value=="p {background-color : yellow;}"){
+				if(rb3.value=="JDB"){
 					mark++;
 				}
 				break;
@@ -645,7 +675,7 @@ if(hour==0 && min==0)  {
 		const rbs4=document.querySelectorAll('input[name="answer4"]');
 		for(const rb4 of rbs4){
 			if(rb4.checked){
-				if(rb4.value=="a {text-decoration : none;}"){
+				if(rb4.value=="Variable Shadowing"){
 					mark++;
 				}
 				break;
@@ -656,7 +686,7 @@ if(hour==0 && min==0)  {
 		const rbs5=document.querySelectorAll('input[name="answer5"]');
 		for(const rb5 of rbs5){
 			if(rb5.checked){
-				if(rb5.value=="padding"){
+				if(rb5.value=="int"){
 					mark++;
 				}
 				break;
@@ -667,7 +697,7 @@ if(hour==0 && min==0)  {
 		const rbs6=document.querySelectorAll('input[name="answer6"]');
 		for(const rb6 of rbs6){
 			if(rb6.checked){
-				if(rb6.value=="font-weight : bold"){
+				if(rb6.value=="Infinity"){
 					mark++;
 				}
 				break;
@@ -678,7 +708,7 @@ if(hour==0 && min==0)  {
 		const rbs7=document.querySelectorAll('input[name="answer7"]');
 		for(const rb7 of rbs7){
 			if(rb7.checked){
-				if(rb7.value=="No"){
+				if(rb7.value=="25"){
 					mark++;
 				}
 				break;
@@ -689,7 +719,7 @@ if(hour==0 && min==0)  {
 		const rbs8=document.querySelectorAll('input[name="answer8"]');
 		for(const rb8 of rbs8){
 			if(rb8.checked){
-				if(rb8.value=="margin"){
+				if(rb8.value=="getName()"){
 					mark++;
 				}
 				break;
@@ -700,7 +730,7 @@ if(hour==0 && min==0)  {
 		const rbs9=document.querySelectorAll('input[name="answer9"]');
 		for(const rb9 of rbs9){
 			if(rb9.checked){
-				if(rb9.value=="opacity"){
+				if(rb9.value=="java.util package"){
 					mark++;
 				}
 				break;
@@ -711,7 +741,7 @@ if(hour==0 && min==0)  {
 		const rbs10=document.querySelectorAll('input[name="answer10"]');
 		for(const rb10 of rbs10){
 			if(rb10.checked){
-				if(rb10.value=="vertical-align: sub"){
+				if(rb10.value=="for ( int i = 99; i >= 0; i / 9 )"){
 					mark++;
 				}
 				break;
@@ -719,6 +749,8 @@ if(hour==0 && min==0)  {
 		}
 		
 		document.getElementById("finish").style.visibility="visible";
+		document.getElementById("feed").style.visibility="visible";
+		document.getElementById("home").style.visibility="visible";
 		console.log(mark);
 		document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
 		//return mark;

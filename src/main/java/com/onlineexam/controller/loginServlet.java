@@ -1,6 +1,7 @@
 package com.onlineexam.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 
 import com.onlineexam.exception.InvalidUserException;
@@ -45,7 +46,8 @@ public class loginServlet extends HttpServlet
 				else {
 					HttpSession session=req.getSession();
 					session.setAttribute("loginResult","Invalid username or password");
-					res.sendRedirect("index.jsp");
+					
+						
 				
 					//res.getWriter().println("Invalid Username or password!!");
 				}
@@ -54,11 +56,11 @@ public class loginServlet extends HttpServlet
 				throw new InvalidUserException();
 			}}
 			catch(InvalidUserException iv) {
-				String clear=iv.invaliduser();
-				res.sendRedirect(clear);
+//				String clear=iv.invaliduser();
+				res.sendRedirect("errorpage.jsp?message="+iv.getMessage()+"&url=index.jsp");
 			
-				HttpSession session=req.getSession();
-				session.setAttribute("loginResult","Invalid username or password");
+//				HttpSession session=req.getSession();
+//				session.setAttribute("loginResult","Invalid username or password");
 				//res.sendRedirect("index.jsp");
 //			
 		} catch (Exception e) {

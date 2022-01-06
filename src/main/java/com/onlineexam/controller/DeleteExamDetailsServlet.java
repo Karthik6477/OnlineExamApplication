@@ -3,6 +3,7 @@ package com.onlineexam.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import com.onlineexam.exception.ExamNotDeleteException;
 import com.onlineexam.impl.ExamDetailsDao;
 import com.onlineexam.model.ExamDetailsPojo;
 
@@ -11,11 +12,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 @WebServlet("/deleteExamServlet")
 public class DeleteExamDetailsServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException {
-		int examId=Integer.parseInt(req.getParameter("examId"));
-		
+		HttpSession session1=req.getSession();
+		int examId=Integer.parseInt(req.getParameter("examid").toString());
 		ExamDetailsPojo edp=new ExamDetailsPojo(examId);
 		ExamDetailsDao ed=new ExamDetailsDao();
 		try {
@@ -23,15 +25,24 @@ public class DeleteExamDetailsServlet extends HttpServlet {
 			if(flag) {
 				HttpSession session=req.getSession();
 				session.setAttribute("deleteExamResult","Exam deleted successfully");
-				res.sendRedirect("ExamDetails.jsp");
+				res.sendRedirect("ShowExams.jsp");
 			}
 			else {
-				HttpSession session=req.getSession();
-				session.setAttribute("deleteExamResult","Couldn't delete exam");
-				res.sendRedirect("ExamDetails.jsp");
+				throw new ExamNotDeleteException();
+//				HttpSession session=req.getSession();
+//				session.setAttribute("deleteExamResult","Couldn't delete exam");
 			}
-		} catch (SQLException e) {
+		}
+		
+		catch (SQLException e) {
 			// TODO Auto-generated catch block
+			try {
+				throw new ExamNotDeleteException();
+			}
+			catch(ExamNotDeleteException end) {
+				res.sendRedirect("errorpage.jsp?message="+end.getMessage()+"&url=ShowExams.jsp");
+			}
+			
 			e.printStackTrace();
 		}
 	}

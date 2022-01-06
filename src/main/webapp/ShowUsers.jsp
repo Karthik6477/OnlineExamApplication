@@ -23,8 +23,8 @@ body{
 <title>List of Users</title>
 </head>
 <body>
-	<a id="ExamDetails" href="ExamDetails.jsp"><h4 style="float: right;margin-right:10px;">ExamDetails</h4></a>
-	<h2>Users</h2>
+	<a id="ExamDetails" href="ExamDetails.jsp"><h4 style="float: right;margin-right:10px;font-size:x-large;color:black"><u>Back</u></h4></a>
+	<h2><u>Users</u></h2>
 	
 	<% ShowUsersDetails sd=new ShowUsersDetails();
 	ResultSet rs=sd.showUsers(); %>

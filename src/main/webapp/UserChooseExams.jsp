@@ -23,8 +23,8 @@ body{
 <title>List of Exams</title>
 </head>
 <body>
-	<a href="FilterByDifficulty.html"><h4 style="float: right;margin-right:10px;">Choose Difficulty</h4></a>
-	<h2>Exams</h2>
+	<a href="FilterByDifficulty.html"><h4 style="float: right;margin-right:10px;margin-top:-7px;font-size:x-large;color:black;"><u><b>Back</b></u></h4></a>
+	<h2><u>Exams</u></h2>
 	<% ResultSet rs=ShowExamDetails.showExams();
 	%>
 	<table style="width: 80%;margin-left: 100px;">

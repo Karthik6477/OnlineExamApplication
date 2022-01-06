@@ -14,12 +14,13 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/updateExamDetails")
 public class UpdateExamDetailsServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException {
-		String examType=req.getParameter("examType");
+		HttpSession session1=req.getSession();
+		//int examId=Integer.parseInt(session1.getAttribute("examid").toString());
+		int examId=Integer.parseInt(req.getParameter("examid").toString());
 		String difficultyLevel=req.getParameter("difficultyLevel");
 		int durationMinutes=Integer.parseInt(req.getParameter("durationMinutes"));
-		int examId=Integer.parseInt(req.getParameter("examId"));
 		
-		ExamDetailsPojo edp=new ExamDetailsPojo(examType,difficultyLevel,durationMinutes,examId);
+		ExamDetailsPojo edp=new ExamDetailsPojo(difficultyLevel,durationMinutes,examId);
 		ExamDetailsDao ed=new ExamDetailsDao();
 		HttpSession session=req.getSession();
 		
@@ -28,12 +29,12 @@ public class UpdateExamDetailsServlet extends HttpServlet {
 			if(flag) {
 				
 				session.setAttribute("updateExamResult","Exam updated successfully");
-				res.sendRedirect("ExamDetails.jsp");
+				res.sendRedirect("ShowExams.jsp");
 			}
 			else {
 				//HttpSession session=req.getSession();
 				session.setAttribute("updateExamResult","Couldn't update exam");
-				res.sendRedirect("ExamDetails.jsp");
+				res.sendRedirect("ShowExams.jsp");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

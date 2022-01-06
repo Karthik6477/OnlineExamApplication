@@ -17,6 +17,7 @@ h2{
 <title>Feedback Details</title>
 </head>
 <body>
+<a href="UserMain.jsp"><h4 style="float:right;margin-right:10px;font-size:x-large;"><u>Home</u></h4></a>
 <% ResultSet rs=ShowExamDetails.showExams();%>
 	
 	

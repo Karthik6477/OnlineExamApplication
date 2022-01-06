@@ -47,10 +47,11 @@
                     minlength="8" maxlength="16"><br><br>
                 <label for="phone_number">Phone number :</label><br>
                 <input type="text" pattern="[6-9]{1}[0-9]{9}" name="phone_number" id="phone_number" required
-                    minlength="10" maxlength="10"><br><br><br><br>
+                    minlength="10" maxlength="10"><br><br><br>
                     
-                    <button type="submit">Submit</button>
+                    <button type="submit" style="margin-left:-15px;">Submit</button>&nbsp;&nbsp;
                 <button type="reset">Reset</button>
+                <a href="index.jsp" style="font-size:x-large;margin-left:-7px;color:tomato;">login</a>
                 
                 
             </div>
@@ -58,6 +59,7 @@
         </form>
         
     </div>
+    
     <%	String error1=(String)session.getAttribute("phonenumberexist");
       	if(error1!=null){%>
       		<h3 style="margin-left:590px;margin-top:590px; size:70%"><%=session.getAttribute("phonenumberexist") %></h3>

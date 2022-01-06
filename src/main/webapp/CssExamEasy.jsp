@@ -75,7 +75,7 @@ font-size:x-large;
 	%>
 	
 	<h2><u>CSS Exam</u></h2>
-	<a id="home" href="UserMain.jsp"><h4>Home</h4></a>
+	<a id="home" href="UserChooseExams.jsp"><h4><u>Back</u></h4></a>
 	<div id="clock">
     <b id="hour"></b><label> &nbsp;<span id="colon">:</span>&nbsp;</label><b id="min"></b>
 </div>
