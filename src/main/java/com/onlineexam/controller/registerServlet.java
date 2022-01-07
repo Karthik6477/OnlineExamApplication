@@ -48,7 +48,9 @@ public class registerServlet extends HttpServlet{
 			
 			
 			rdao.fetchregister(rd);
+			session.setAttribute("registered","You've registered successfully");
 			res.sendRedirect("index.jsp");
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

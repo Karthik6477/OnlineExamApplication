@@ -35,8 +35,22 @@
       	if(error1!=null){%>
       		<script>getError();</script> 
       	<%} %>
-
+      	
+      	<% String regres=(String)session.getAttribute("registered");
+      	
+      	if(regres!=null){%>
+      		<h3 style="margin-left:565px;margin-top:563px; size:70%"><%=session.getAttribute("registered") %></h3> 
+      	<%} %>
+      	
+      	<%String message=(String)session.getAttribute("changed");
+	if(message!=null){%>
+		<h3 style="margin-left:565px;margin-top:563px; size:70%"><%=session.getAttribute("changed") %></h3>
+	<% }
+	%>
+	
+		<%session.removeAttribute("changed"); %>
         <% session.removeAttribute("loginResult");%>
+        <% session.removeAttribute("registered");%>
 </body>
 </html>
 <script>
