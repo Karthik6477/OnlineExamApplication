@@ -31,7 +31,7 @@ a{
 </head>
 <body>
 	<h2><u>Feedback Details</u></h2>
-	<a href="AdminMain.html"><b>Home</b></a>
+	<a href="AdminMain.jsp"><b>Home</b></a>
 <%
 FeedbackDetailsDao fdd=new FeedbackDetailsDao();
 ResultSet rs=fdd.showFeedbackAdmin();

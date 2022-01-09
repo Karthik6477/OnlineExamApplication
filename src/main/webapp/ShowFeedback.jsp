@@ -33,13 +33,13 @@ a{
 	<h2><u>Feedback Details</u></h2>
 	<a href="UserMain.jsp"><b>Home</b></a>
 <% int userid= (int)session.getAttribute("userid");
+String username=(String)session.getAttribute("username");
 FeedbackDetailsDao fdd=new FeedbackDetailsDao();
 ResultSet rs=fdd.showFeedback(userid);
 %>
-<table style="width: 80%;margin-left: 100px;">
+<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
-            <th>Feedback Id</th>
-            <th>User Id</th>
+            <th>User name</th>
             <th>Exam Id</th>
             <th>Feedback</th>
             <th>Feedback Date</th>
@@ -47,8 +47,7 @@ ResultSet rs=fdd.showFeedback(userid);
         <% while(rs.next()){ 
         	%>
         	<tr>
-                <td><%=rs.getInt(1)%></td>
-                <td><%=rs.getInt(2)%></td>
+                <td><%=username%></td>
                 <td><%=rs.getInt(3)%></td>
                 <td><%=rs.getString(4)%></td>
                 <td><%=rs.getDate(5)%></td>

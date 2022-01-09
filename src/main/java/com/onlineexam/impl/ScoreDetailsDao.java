@@ -24,7 +24,7 @@ public class ScoreDetailsDao implements ScoreDetailsDaoInterface{
 	}
 	public ResultSet viewScore(int studentId) throws SQLException {
 		Connection con=ConnectionPage.connection();
-		String query="select * from scoreDetails where studentId=?";
+		String query="select * from scoreDetails where studentId=? order by examdate desc";
 		PreparedStatement pstmt=con.prepareStatement(query);
 		pstmt.setInt(1, studentId);
 		ResultSet rs=pstmt.executeQuery();

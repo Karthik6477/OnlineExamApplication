@@ -20,7 +20,9 @@ h2{
 body{
     background: linear-gradient(to right, springgreen, rgb(253, 253, 53));
   }
-
+h1{
+text-align:center;
+}
 </style>
 <title>List of completed exams</title>
 </head>
@@ -30,7 +32,7 @@ body{
 	
 	<%
 	ResultSet rs=ShowUsersDetails.viewAllScore(); %>
-	<table style="width: 80%;margin-left: 100px;">
+	<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
             <th>Student Id</th>
             <th>Exam Id</th>

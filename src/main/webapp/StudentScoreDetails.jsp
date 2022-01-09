@@ -33,14 +33,13 @@ a{
 	<h2><u>Score Details</u></h2>
 	<a href="UserMain.jsp"><b>Home</b></a>
 	<%int userid= (int)session.getAttribute("userid");
-	//System.out.println(userid);
+	String username=(String)session.getAttribute("username");
 	ScoreDetailsDao dd=new ScoreDetailsDao();
 	ResultSet rs=dd.viewScore(userid); 
 	%>
-	<table style="width: 80%;margin-left: 100px;">
+	<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
-            <th>Student Id</th>
-            <th>Exam Id</th>
+            <th>Student name</th>
             <th>Exam Name</th>
             <th>Score</th>
             <th>PassOrFail</th>
@@ -50,8 +49,7 @@ a{
         <% while(rs.next()){ 
         	%>
         	<tr>
-                <td><%=rs.getInt(1)%></td>
-                <td><%=rs.getInt(2)%></td>
+                <td><%=username%></td>
                 <td><%=rs.getString(3)%></td>
                 <td><%=rs.getInt(4)%></td>
                 <td><%=rs.getString(5)%></td>

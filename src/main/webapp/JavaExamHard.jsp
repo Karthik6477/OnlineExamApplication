@@ -28,22 +28,33 @@ margin-top:120px;
 left:170px;
 font-size:30px;
 }
-#startButton{
-position: absolute;
-margin-top:220px;
-left:630px;
-width:100px;
-height:50px;
-font-weight:bold;
-font-size:130%;
-background-color:rgb(250, 156, 140);
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.examButton{
+  background-color: rgb(171, 255, 36);  
+  color: black; 
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: 4px solid black;
+}
+.examButton:hover,.examButton :active{
+  background-color: black;
+  color: white;
+  transition: 2ms;
 }
 #finish,#feed,#hour,#min,#colon{
 	visibility:hidden;
-}
-#startButton:hover{
-background-color:black;
-color:white;
 }
 #result{
 font-size:large;
@@ -67,6 +78,10 @@ margin-right:10px;
 margin-top:-70px;
 font-size:x-large;
 }
+.start{
+margin-top:210px;
+margin-left:630px;
+}
 </style>
 <title>JAVA Exam</title>
 </head>
@@ -74,14 +89,21 @@ font-size:x-large;
 	<% ResultSet rs=ShowExamDetails.showExams();
 	%>
 	
-	<h2><u>JAVA Exam</u></h2>
-	<a id="home" href="UserChooseExams1.jsp"><h4><u>Back</u></h4></a>
+	<%int userid= (int)session.getAttribute("userid");
+int examId=Integer.parseInt(request.getParameter("examid"));
+String examName=request.getParameter("examName");
+HttpSession session1=request.getSession();
+int duration=Integer.parseInt(session1.getAttribute("duration").toString());
+%>
+	
+	<h2 style="margin-left:50px;"><u>JAVA Exam</u></h2>
+	<a id="home" href="UserChooseExams.jsp"><h4 style="color:black;"><u>Back</u></h4></a>
 	<div id="clock">
     <b id="hour"></b><label> &nbsp;<span id="colon">:</span>&nbsp;</label><b id="min"></b>
 </div>
-<br> <button id="startButton" onclick="clcok()">Start</button>
+<br> <button id="startButton" onclick="clcok()" class="button examButton start">Start</button>
 	
-	<div>
+	<div style="margin-top:-250px;">
 	<div class="questions" id="question1">
 	<p>1) What do you mean by nameless objects?<br>
 		<input type="radio" name="answer1" value="An object created by using the new keyword.">An object created by using the new keyword.<br>
@@ -173,23 +195,12 @@ font-size:x-large;
 	</p>
 	
 	</div>
-	</div>
-<p id="result"></p>
-<p id="passFail"></p>
-<p id="studentGrade"></p>
-
-<div id="buttons">
-<button id="next" onclick="qu()" style="margin-left:650px;margin-top:380px;">Next</button>
-<button id="submit" onclick="ans()">submit</button>
+	
 </div>
-
-<%int userid= (int)session.getAttribute("userid");
-int examId=Integer.parseInt(request.getParameter("examid"));
-String examName=request.getParameter("examName");
-HttpSession session1=request.getSession();
-int duration=Integer.parseInt(session1.getAttribute("duration").toString());
-%>
-<div id="finish">
+<div id="feed">
+<a href="feedbackDetails.jsp?examid=<%=examId%>&userid=<%=userid%>"><center><button class="button examButton" style="margin-top:2px;">Send feedback</button></center>&nbsp;&nbsp;</a>
+</div>
+<div id="finish" style="text-align:center;">
 <form action="scoreDetails" >
 <input style="visibility:hidden;" type="text" id="examId" name="examId" value="<%=examId%>">
 <input style="visibility:hidden;" type="text" id="examName" name="examName" value="<%=examName%>">
@@ -197,8 +208,21 @@ int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 <input style="visibility:hidden;" type="text" id="score" name="score">
 <input style="visibility:hidden;" type="text" id="passOrFail" name="passOrFail">
 <input style="visibility:hidden;" type="text" id="grade" name="grade">
-<button>View my Exam</button>
+<center><button class="button examButton" style="margin-top:5px;">View my Exam</button></center>
 </form></div>
+<p id="result"></p>
+<p id="passFail"></p>
+<p id="studentGrade"></p>
+
+<div id="buttons">
+<button id="submit" onclick="ans()" style="margin-left:650px;margin-top:200px;" class="button examButton">submit</button>
+<button id="next" onclick="qu()" style="margin-left:650px;margin-top:-90px;" class="button examButton">Next</button>
+
+</div>
+
+
+
+
 <!--<div id="feedback">
 <form action="feedbackDetails.jsp">
 <input style="visibility:hidden;" type="text" id="examId" name="examId" value="<%=examId%>">
@@ -206,9 +230,7 @@ int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 <input style="visibility:hidden;" type="text" id="studentId" name="uID" value="<%=userid%>"/>
 <button>Send feedback</button>
 </form></div>-->
-<div id="feed">
-<a href="feedbackDetails.jsp?examid=<%=examId%>&userid=<%=userid%>"><button >Send feedback</button></a>
-</div>
+
 </body>
 </html>
 <script>

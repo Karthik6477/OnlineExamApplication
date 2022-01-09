@@ -31,12 +31,12 @@ a{
 </head>
 <body>
 	<h2><u>Users Comments Details</u></h2>
-	<a href="AdminMain.html"><b>Home</b></a>
+	<a href="AdminMain.jsp"><b>Home</b></a>
 	
 <% ContactUsDao cud=new ContactUsDao();
 ResultSet rs=cud.showCommentsAdmin();%>
-
-<table style="width: 80%;margin-left: 100px;">
+<div >
+<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
             <th>User Id</th>
             <th>Email</th>
@@ -54,5 +54,6 @@ ResultSet rs=cud.showCommentsAdmin();%>
                </tr>
                <%} %>
                </table> 
+               </div>
 </body>
 </html>

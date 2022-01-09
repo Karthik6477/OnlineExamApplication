@@ -21,7 +21,7 @@ public class FeedbackDetailsDao implements FeedbackDetailsDaoInterface{
 	}
 	public ResultSet showFeedback(int userid) throws SQLException {
 		Connection con=ConnectionPage.connection();
-		String query="select * from feedbackDetails where userid="+userid;
+		String query="select * from feedbackDetails where userid="+userid+" order by feedbackdate";
 		PreparedStatement pstmt=con.prepareStatement(query);
 		ResultSet rs=pstmt.executeQuery();
 		return rs;

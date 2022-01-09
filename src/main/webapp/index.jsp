@@ -10,7 +10,6 @@
 
 <body>
 	<form action="loginserv" method="post">
-        <!-- <img src="onlineExamImage.jpg" alt="onlineexam"  class="img1",class="centered"> -->
     <div class="container">
         <h1 class="h1move" class="login"><u>Login</u></h1>
         <label for="email" class="usernamealign">Email id</label><br>
@@ -48,15 +47,14 @@
 	<% }
 	%>
 	
+	<%String logout=(String)session.getAttribute("logout");
+	if(logout!=null){%>
+		<h3 style="margin-left:569px;margin-top:560px; size:70%;font-size:x-large;"><%=session.getAttribute("logout") %></h3>
+	<% }
+	%>
+		<%session.removeAttribute("logout"); %>
 		<%session.removeAttribute("changed"); %>
         <% session.removeAttribute("loginResult");%>
         <% session.removeAttribute("registered");%>
 </body>
 </html>
-<script>
-function getError(){
-	
-		alert(<%=session.getAttribute("loginResult")%>);
-	
-}
-</script>

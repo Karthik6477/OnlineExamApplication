@@ -18,14 +18,16 @@ body{
 	margin-right:10px;
 	font-size:x-large;
 }
-
+.homealign{
+color:black
+}
 </style>
 <title>Study Materials</title>
 </head>
 <body>
 <div>
 	<h3><u>Here you can learn more</u></h3>
-	<p class="home"><a href="AdminMain.html">Home</a></p><br>
+	<p class="home"><a href="AdminMain.jsp" class="homealign">Home</a></p><br>
 	
 	<p class="align">JAVA pdf :<a href="JAVA_Mcq_Questions.pdf">JAVA pdf</a></p>
 	<p class="align2">HTML pdf :<a href="HTML_Mcq_Questions.pdf">HTML pdf</a></p>

@@ -23,6 +23,7 @@ public class loginServlet extends HttpServlet
 		LoginPojo lp=new LoginPojo(email, password);
 		LoginDao ld=new LoginDao();
 		int userid;
+		String username;
 		try {
 			ResultSet result=ld.fetchlogin(lp);
 			if(result.next()) {
@@ -31,13 +32,15 @@ public class loginServlet extends HttpServlet
 				rs.next();
 				
 				userid=rs.getInt(1);
+				username=rs.getString(2);
 				HttpSession ses=req.getSession();
 				ses.setAttribute("userid", userid);
+				ses.setAttribute("username", username);
 				
 				
 				String role=rs.getString(8);
 				if(role.equals("admin")) {
-					res.sendRedirect("AdminMain.html");
+					res.sendRedirect("AdminMain.jsp");
 				}
 				else if(role.equals("student")){
 					res.sendRedirect("UserMain.jsp");

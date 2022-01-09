@@ -25,7 +25,7 @@ public class ShowUsersDetails {
 	}
 	public static ResultSet viewAllScore() throws SQLException {
 		Connection con=ConnectionPage.connection();
-		String query="select * from scoreDetails";
+		String query="select * from scoreDetails order by examdate desc";
 		ResultSet rs=null;
 		try {
 			Statement st=con.createStatement();

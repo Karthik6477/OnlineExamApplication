@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,16 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Main page</title>
-    <link rel="stylesheet" href="AdminMain.css">
+    <link rel="stylesheet" href="UserMain.css">
 </head>
 <body>
+<%HttpSession ses=request.getSession(); %>
     
     <ul class="nav">
-        <li><a class="a1" href="index.jsp">Logout</a></li>
-        <li><a class="a1" href="ShowCommentsAdmin.jsp">Contact us</a></li>
-        <li><a class="a1" href="AboutUsAdmin.jsp">About us</a></li>
-        <li><a class="a1" href="ShowFeedbackAdmin.jsp">Feedback</a></li>
-        <li><a class="a1" href="ExamDetails.jsp">Admin Actions</a></li>
+        <li><a class="a1 big" href="index.jsp?message=<%ses.setAttribute("logout", "Logged out successfully");%>">Logout</a></li>
+        <li><a class="a1 big" href="ShowCommentsAdmin.jsp">Contact us</a></li>
+        <li><a class="a1 big" href="AboutUsAdmin.jsp">About us</a></li>
+        <li><a class="a1 big" href="ShowFeedbackAdmin.jsp">Feedback</a></li>
+        <li><a class="a1 big" href="ExamDetails.jsp">Admin Actions</a></li>
     </ul>
     <img src="images/onlineExamIcon.png" class="imgIcon">
     <div class="h1">

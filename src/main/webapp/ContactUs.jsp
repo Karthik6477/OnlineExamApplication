@@ -11,8 +11,9 @@ body{
 .home{
 	float:right;
 	margin-top:10px;
-	margin-right:10px;
+	margin-right:15px;
 	font-size:x-large;
+	font-weight:bolder;
 }
 .login{
         margin-left: 100px;
@@ -32,10 +33,13 @@ body{
         box-shadow: 0 0 15px black;
     
         }
-    .container input{
-        outline: none;
-        height: 20px;
-    } 
+.container input{
+outline: none;
+height: 20px;
+} 
+a{
+color:black;
+}
 </style>
 <title>Contact Us</title>
 </head>
@@ -49,7 +53,7 @@ body{
 	<label for="email" class="usernamealign">Enter your Email:</label><br>
 	<input type="email" pattern="[a-z][a-z0-9]+[@][a-z]+[.][a-z]+" name="email" id="email" placeholder="abc@domain.com" autofocus required><br><br>
 	<label for="comments">Drop your Comments:</label><br>
-	<textarea name="comments" id="comments"></textarea><br><br>
+	<textarea name="comments" id="comments" required></textarea><br><br>
 	<button type="submit">Submit</button>
 	</form>
 </body>

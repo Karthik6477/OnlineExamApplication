@@ -28,7 +28,7 @@ body{
 	
 	<% ShowUsersDetails sd=new ShowUsersDetails();
 	ResultSet rs=sd.showUsers(); %>
-	<table style="width: 80%;margin-left: 100px;">
+	<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
             <th>User Id</th>
             <th>First Name</th>

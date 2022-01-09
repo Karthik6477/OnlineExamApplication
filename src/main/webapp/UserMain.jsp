@@ -11,13 +11,14 @@
 </head>
 <body>
     <%int userid=(int)session.getAttribute("userid");
+    HttpSession ses=request.getSession();
     
     %>
     <ul class="nav">
-        <li><a class="a1" href="index.jsp">Logout</a></li>
+        <li><a class="a1" href="index.jsp?message=<%ses.setAttribute("logout", "Logged out successfully");%>">Logout</a></li>
         <li><a class="a1" href="ContactUs.jsp?userid=<%=userid%>">Contact us</a></li>
         <li><a class="a1" href="AboutUs.jsp">About us</a></li>
-        <li><a class="a1" href="ShowFeedback.jsp?userid=<%=userid%>">Feedback</a></li>
+        <li><a class="a1" href="ShowFeedback.jsp?userid=<%=userid%>">My Feedbacks</a></li>
         <li><a class="a1" href="StudentScoreDetails.jsp">MyExams</a></li>
         
     </ul>
