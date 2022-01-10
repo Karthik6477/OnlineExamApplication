@@ -51,11 +51,11 @@
                     
                     <button type="submit" style="margin-left:-15px;">Submit</button>&nbsp;&nbsp;
                 <button type="reset">Reset</button>
-                <a href="index.jsp" style="font-size:x-large;margin-left:-7px;color:tomato;">login</a>
+                <a href="index.jsp" style="font-size:x-large;margin-left:-7px;color:black;">login</a>
                 
                 
             </div>
-            <p id="pws" style="color: crimson;"></p>
+            <p id="pws" style="color: black;margin-left:70px;font-weight:bolder;font-size:x-large;"></p>
         </form>
         
     </div>
