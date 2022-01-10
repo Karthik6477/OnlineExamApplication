@@ -11,6 +11,44 @@
 body{
     background: linear-gradient(to right, springgreen, rgb(253, 253, 53));
 }
+.container{
+text-align:center;
+font-size:x-large;
+font-weight:bolder;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.examButton{
+  background-color: rgb(171, 255, 36);  
+  color: black; 
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: 4px solid black;
+}
+.examButton:hover,.examButton :active{
+  background-color: black;
+  color: white;
+  transition: 2ms;
+}
+.homealign{
+float:right;
+font-weight:bolder;
+font-size:x-large;
+color:black;
+margin-top:-75px;
+margin-right:15px;
+}
 </style>
 <title>Exam Result</title>
 </head>
@@ -19,20 +57,20 @@ body{
 	String username=(String)session.getAttribute("username");
 	int examId=Integer.parseInt(request.getParameter("examid"));
 	String examName=request.getParameter("examName");
+	int mark=Integer.parseInt(request.getParameter("score"));
+	String passorfail=request.getParameter("passfail");
+	String grade=request.getParameter("grade");
 	ScoreDetailsDao dd=new ScoreDetailsDao();
 	ResultSet rs=dd.viewScore(userid); 
 	%>
-	<h2><u>Score Details</u></h2>
-	<div id="finish" style="text-align:center;">
-<form action="scoreDetails" >
-<input style="visibility:hidden;" type="text" id="examId" name="examId" value="<%=examId%>">
-<input style="visibility:hidden;" type="text" id="examName" name="examName" value="<%=examName%>">
-<input style="visibility:hidden;" type="text" id="studentId" name="uID" value="<%=userid%>"/>
-
-<input style="visibility:hidden;" type="text" id="score" name="score">
-<input style="visibility:hidden;" type="text" id="passOrFail" name="passOrFail">
-<input style="visibility:hidden;" type="text" id="grade" name="grade">
-<button class="button examButton" style="margin-top:-750px;margin-right:150px;">View my Exam</button>
-</form></div>
+	<center><h2><u>Score Details</u></h2></center><br><br>
+	<a href="UserMain.jsp" class="homealign">Home</a>
+<div class="container">
+Your mark is:  <%=mark %><br><br>
+Your status is:  <%=passorfail %><br><br>
+Your grade is:  <%=grade %><br><br><br>
+</div>
+<center><a href="feedbackDetails.jsp?userid=<%=userid %>&examid=<%=examId%>&examname=<%=examName%>"><button type="submit" class="button examButton">Send Feedback</button></a></center>
+	
 </body>
 </html>

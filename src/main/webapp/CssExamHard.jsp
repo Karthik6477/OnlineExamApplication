@@ -53,7 +53,7 @@ font-size:30px;
   color: white;
   transition: 2ms;
 }
-#finish,#feed,#hour,#min,#colon{
+#finish,#feed,#hour,#min,#colon,#next{
 	visibility:hidden;
 }
 #result{
@@ -96,7 +96,7 @@ HttpSession session1=request.getSession();
 int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 %>
 	
-	<h2 style="margin-left:50px;"><u>CSS Exam</u></h2>
+	<h2 style="margin-left:50px;" id="css"><u>CSS Exam</u></h2>
 	<a id="home" href="UserChooseExams.jsp"><h4 style="color:black;"><u>Back</u></h4></a>
 	<div id="clock">
     <b id="hour"></b><label> &nbsp;<span id="colon">:</span>&nbsp;</label><b id="min"></b>
@@ -196,10 +196,8 @@ int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 	</div>
 	
 </div>
-<div id="feed">
-<a href="feedbackDetails.jsp?examid=<%=examId%>&userid=<%=userid%>"><center><button class="button examButton" style="margin-top:2px;">Send feedback</button></center>&nbsp;&nbsp;</a>
-</div>
-<div id="finish" style="text-align:center;">
+
+<!-- <div id="finish" style="text-align:center;">
 <form action="scoreDetails" >
 <input style="visibility:hidden;" type="text" id="examId" name="examId" value="<%=examId%>">
 <input style="visibility:hidden;" type="text" id="examName" name="examName" value="<%=examName%>">
@@ -207,15 +205,27 @@ int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 <input style="visibility:hidden;" type="text" id="score" name="score">
 <input style="visibility:hidden;" type="text" id="passOrFail" name="passOrFail">
 <input style="visibility:hidden;" type="text" id="grade" name="grade">
-<center><button class="button examButton" style="margin-top:5px;">View my Exam</button></center>
-</form></div>
+<center><button class="button examButton" style="margin-top:5px;">View my Exam</button></center> 
+</form></div>-->
 <p id="result"></p>
 <p id="passFail"></p>
 <p id="studentGrade"></p>
+<div id="feed">
+<a href="feedbackDetails.jsp?examid=<%=examId%>&userid=<%=userid%>"><center><button class="button examButton" style="margin-top:100px;">Send feedback</button></center>&nbsp;&nbsp;</a>
+</div>
 
 <div id="buttons">
-<button id="submit" onclick="ans()" style="margin-left:650px;margin-top:200px;" class="button examButton">submit</button>
-<button id="next" onclick="qu()" style="margin-left:650px;margin-top:-90px;" class="button examButton">Next</button>
+<form action="scoreDetails" >
+<input style="visibility:hidden;" type="text" id="examId" name="examId" value="<%=examId%>">
+<input style="visibility:hidden;" type="text" id="examName" name="examName" value="<%=examName%>">
+<input style="visibility:hidden;" type="text" id="studentId" name="uID" value="<%=userid%>"/>
+<input style="visibility:hidden;" type="text" id="score" name="score">
+<input style="visibility:hidden;" type="text" id="passOrFail" name="passOrFail">
+<input style="visibility:hidden;" type="text" id="grade" name="grade">
+<button id="submit" onclick="ans()" style="margin-left:650px;margin-top:170px;" class="button examButton">submit</button>
+</form></div>
+<div>
+<button id="next" onclick="qu()" style="margin-left:650px;margin-top:-200px;" class="button examButton">Next</button>
 
 </div>
 
@@ -372,51 +382,55 @@ function ans(){
 			}
 		}
 		
-		document.getElementById("finish").style.visibility="visible";
-		document.getElementById("feed").style.visibility="visible";
-		document.getElementById("home").style.visibility="visible";
+		//document.getElementById("finish").style.visibility="visible";
+		//document.getElementById("feed").style.visibility="visible";
+		//document.getElementById("home").style.visibility="visible";
 		console.log(mark);
-		document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
+		//document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
 		//return mark;
 
 		   clearInterval(inter);
 		
 		document.getElementById("buttons").style.visibility="hidden";
+		document.getElementById("css").style.visibility="hidden";
+		document.getElementById("hour").style.visibility="hidden";
+		document.getElementById("min").style.visibility="hidden";
+		document.getElementById("colon").style.visibility="hidden";
 		document.getElementById("score").value=mark;
 		if(mark>=5){
 			
 			document.getElementById("passOrFail").value="pass";
-			document.getElementById("passFail").innerHTML="You have passed";
+			//document.getElementById("passFail").innerHTML="You have passed";
 			if(mark==5){
 				document.getElementById("grade").value="E";
-				document.getElementById("studentGrade").innerHTML="Your grade is : E";
+				//document.getElementById("studentGrade").innerHTML="Your grade is : E";
 			}
 			else if(mark==6){
 				document.getElementById("grade").value="D";
-				document.getElementById("studentGrade").innerHTML="Your grade is : D";
+				//document.getElementById("studentGrade").innerHTML="Your grade is : D";
 			}
 			else if(mark==7){
 				document.getElementById("grade").value="C";
-				document.getElementById("studentGrade").innerHTML="Your grade is : C";
+				//document.getElementById("studentGrade").innerHTML="Your grade is : C";
 			}
 			else if(mark==8){
 				document.getElementById("grade").value="B";
-				document.getElementById("studentGrade").innerHTML="Your grade is : B";
+				//document.getElementById("studentGrade").innerHTML="Your grade is : B";
 			}
 			else if(mark==9){
 				document.getElementById("grade").value="A";
-				document.getElementById("studentGrade").innerHTML="Your grade is : A";
+				//document.getElementById("studentGrade").innerHTML="Your grade is : A";
 			}
 			else if(mark==10){
 				document.getElementById("grade").value="O";
-				document.getElementById("studentGrade").innerHTML="Your grade is : O";
+				//document.getElementById("studentGrade").innerHTML="Your grade is : O";
 			}
 		}
 		else{
 			document.getElementById("passOrFail").value="fail";
-			document.getElementById("passFail").innerHTML="You have failed";
+			//document.getElementById("passFail").innerHTML="You have failed";
 			document.getElementById("grade").value="RA";
-			document.getElementById("studentGrade").innerHTML="Your grade is : RA";
+			//document.getElementById("studentGrade").innerHTML="Your grade is : RA";
 		}
 
 }
@@ -607,6 +621,7 @@ function clcok(){
 	document.getElementById("hour").style.visibility="visible";
 	document.getElementById("min").style.visibility="visible";
 	document.getElementById("colon").style.visibility="visible";
+	document.getElementById("next").style.visibility="visible";
 	document.getElementById("startButton").style.visibility="hidden";
 	document.getElementById("question1").style.visibility="visible";
     document.getElementById("question2").style.visibility="hidden";
@@ -770,16 +785,17 @@ if(hour==0 && min==0)  {
 			}
 		}
 		
-		document.getElementById("finish").style.visibility="visible";
-		document.getElementById("feed").style.visibility="visible";
-		document.getElementById("home").style.visibility="visible";
+		//document.getElementById("finish").style.visibility="visible";
+		//document.getElementById("feed").style.visibility="visible";
+		//document.getElementById("home").style.visibility="visible";
 		console.log(mark);
-		document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
+		//document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
 		//return mark;
 
 		   clearInterval(inter);
 		
 		document.getElementById("buttons").style.visibility="hidden";
+		document.getElementById("css").style.visibility="hidden";
 		document.getElementById("score").value=mark;
 		if(mark>=5){
 			

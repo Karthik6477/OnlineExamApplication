@@ -36,7 +36,7 @@ a{
 FeedbackDetailsDao fdd=new FeedbackDetailsDao();
 ResultSet rs=fdd.showFeedbackAdmin();
 %>
-<table style="width: 80%;margin-left: 100px;">
+<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
             <th>Feedback Id</th>
             <th>User Id</th>

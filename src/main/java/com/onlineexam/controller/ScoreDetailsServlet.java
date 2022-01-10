@@ -24,7 +24,7 @@ public class ScoreDetailsServlet extends HttpServlet {
 		ScoreDetailsDao sdd=new ScoreDetailsDao();
 		try {
 			sdd.insertScore(sd);
-			res.sendRedirect("StudentScoreDetails.jsp");
+			res.sendRedirect("ExamResult.jsp?userid="+userId+"&examid="+ExamId+"&examName="+ExamName+"&score="+score+"&passfail="+passOrFail+"&grade="+grade);
 			
 			
 		} catch (SQLException e) {
