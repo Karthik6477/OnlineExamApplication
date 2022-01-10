@@ -1,5 +1,7 @@
 package com.onlineexam.model;
 
+import java.util.Date;
+
 public class ScoreDetails {
 	private int studentId;
 	private int examId;
@@ -7,8 +9,16 @@ public class ScoreDetails {
 	private int score;
 	private String passOrFail;
 	private String grade;
+	private String examdate;
 	
 	
+	
+	public String getExamdate() {
+		return examdate;
+	}
+	public void setExamdate(String examdate) {
+		this.examdate = examdate;
+	}
 	public int getStudentId() {
 		return studentId;
 	}
@@ -53,6 +63,10 @@ public class ScoreDetails {
 		this.score = score;
 		this.passOrFail = passOrFail;
 		this.grade = grade;
+	}
+	public ScoreDetails(String examdate) {
+		// TODO Auto-generated constructor stub
+		this.examdate=examdate;
 	}
 	@Override
 	public String toString() {

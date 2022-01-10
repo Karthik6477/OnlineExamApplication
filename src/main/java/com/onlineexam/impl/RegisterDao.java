@@ -52,4 +52,18 @@ public class RegisterDao implements RegisterDaoInterface {
 		ResultSet rs=pstmt.executeQuery();
 		return rs;
 	}
+	public void updatestatus(RegisterPojo rp) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="update registerPage set role='inactive' where id=?";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setInt(1, rp.getUserid());
+		pstmt.executeUpdate();
+	}
+	public void makeactive(RegisterPojo rp) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="update registerPage set role='student' where id=?";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setInt(1, rp.getUserid());
+		pstmt.executeUpdate();
+	}
 }

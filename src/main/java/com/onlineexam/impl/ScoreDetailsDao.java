@@ -1,6 +1,7 @@
 package com.onlineexam.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +31,13 @@ public class ScoreDetailsDao implements ScoreDetailsDaoInterface{
 		ResultSet rs=pstmt.executeQuery();
 		return rs;
 	}
-	
+	public static ResultSet filterbydate(ScoreDetails sd) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="select * from scoreDetails where examdate=? order by examdate desc";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setString(1, sd.getExamdate());
+		ResultSet rs=pstmt.executeQuery();
+		return rs;
+	}
 	
 }

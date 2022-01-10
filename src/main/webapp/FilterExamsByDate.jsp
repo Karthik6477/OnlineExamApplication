@@ -4,6 +4,8 @@
     <%@page import="com.onlineexam.controller.ShowUsersDetails"%>
     <%@page import="com.onlineexam.impl.*"%>
     <%@page import="com.onlineexam.model.*" %>
+    <%@page import="java.util.Date" %>
+    <%@page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,17 +26,17 @@ h1{
 text-align:center;
 }
 </style>
-<title>List of completed exams</title>
+<title>List of exams</title>
 </head>
 <body>
 <h1><u>All Exams</u></h1>
 		<a id="ExamDetails" href="ExamDetails.jsp"><h4 style="float: right;margin-right:10px;margin-top:-50px;font-size:x-large;color:black;"><u>Back</u></h4></a>
-	<!-- <form action="filterdate" method="post"><div style="text-align:center;">
-	<h3>Filter by date <input type="date" name="date"></h3></div>
-	<button type="submit">submit</button></form> -->
+	<form action="filterdate" method="post"><div style="text-align:center;">
+	<h3>Filter by date <input type="date" name="date"></h3></div></form>
 	
-	<%
-	ResultSet rs=ShowUsersDetails.viewAllScore(); %>
+	<%String examdate=request.getParameter("examdate");
+	ScoreDetails sd=new ScoreDetails(examdate);
+	ResultSet rs=ScoreDetailsDao.filterbydate(sd); %>
 	<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
             <th>Student Id</th>

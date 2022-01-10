@@ -23,6 +23,19 @@ public class ShowUsersDetails {
 		}
 		return rs;
 	}
+	public  ResultSet showInactiveUsers() {
+		Connection con=ConnectionPage.connection();
+		String query="select * from registerPage where role='inactive'";
+		ResultSet rs=null;
+		try {
+			Statement st=con.createStatement();
+			rs=st.executeQuery(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
 	public static ResultSet viewAllScore() throws SQLException {
 		Connection con=ConnectionPage.connection();
 		String query="select * from scoreDetails order by examdate desc";

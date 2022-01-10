@@ -44,18 +44,18 @@ body{
   transition: 2ms;
 }
 </style>
-<title>List of Users</title>
+<title>Inactive Users</title>
 </head>
 <body>
 	<a id="ExamDetails" href="ExamDetails.jsp"><h4 style="float: right;margin-right:10px;font-size:x-large;color:black"><u>Back</u></h4></a>
-	<h2><u>Users</u></h2>
-	<%String message=(String)session.getAttribute("statusmessage");
+	<h2><u>Inactive Users</u></h2>
+	<%String message=(String)session.getAttribute("madeactive");
     if(message!=null){
-    	%><h3 style="text-align:center;"><%=session.getAttribute("statusmessage") %></h3><% 
+    	%><h3 style="text-align:center;"><%=session.getAttribute("madeactive") %></h3><% 
     }%>
 	
 	<% ShowUsersDetails sd=new ShowUsersDetails();
-	ResultSet rs=sd.showUsers(); %>
+	ResultSet rs=sd.showInactiveUsers(); %>
 	<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
             <th>User Id</th>
@@ -72,11 +72,11 @@ body{
                 <td><%=rs.getString(3)%></td>
                 <td><%=rs.getString(4)%></td>
                 <td><%=rs.getString(7)%></td>
-                <form action="userstatus?userid=<%=rs.getInt(1) %>" method="post">
-                <td><center><button type="submit" class="button examButton">Make Inactive</button></center></td></form>
+                <form action="active?userid=<%=rs.getInt(1) %>" method="post">
+                <td><center><button type="submit" class="button examButton">Make Active</button></center></td></form>
             </tr>
         <%} %>
     </table>
-    <%session.removeAttribute("statusmessage"); %>
+    <%session.removeAttribute("madeactive"); %>
 </body>
 </html>

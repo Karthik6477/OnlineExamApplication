@@ -1,6 +1,7 @@
 package com.onlineexam.model;
 
 public class RegisterPojo {
+	private int userid;
 	private String first_name;
 	private String last_name;
 	private String email;
@@ -27,15 +28,24 @@ public class RegisterPojo {
 		this.confirm_password = confirm_password;
 		this.phone_number = phone_number;
 	}
+	
+	
+	public RegisterPojo(int userid) {
+		super();
+		this.userid = userid;
+	}
 	public String getConfirm_password() {
 		return confirm_password;
 	}
 	public void setConfirm_password(String confirm_password) {
 		this.confirm_password = confirm_password;
 	}
-	
-	
-	
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
 	public String getFirst_name() {
 		return first_name;
 	}
