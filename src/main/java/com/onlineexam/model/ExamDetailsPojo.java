@@ -41,9 +41,8 @@ public class ExamDetailsPojo {
 	
 	
 	//for adding exam
-	public ExamDetailsPojo(int examId, String examName, String examType, String difficultyLevel, int durationMinutes) {
+	public ExamDetailsPojo( String examName, String examType, String difficultyLevel, int durationMinutes) {
 		super();
-		this.examId = examId;
 		this.examName = examName;
 		this.examType = examType;
 		this.difficultyLevel = difficultyLevel;

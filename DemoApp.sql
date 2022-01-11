@@ -18,11 +18,11 @@ commit;
 --exam details table
 
 create table examDetails(
-examId number primary key not null,
+examId number generated always as identity start with 101 increment by 1 primary key,
 examName varchar2(20),
 examType varchar2(20),
 difficultyLevel varchar2(10),
-durationHours number 
+durationMinutes number 
 );
 
 select * from examDetails;
@@ -38,13 +38,13 @@ examName varchar2(80),
 score number,
 passOrFail varchar2(80),
 grade varchar2(80),
+examdate date,
 constraint fk_id foreign key(studentId) references registerPage(id),
 constraint fk_id1 foreign key(examId) references examDetails(examId)
 );
 
 select * from scoreDetails;
 commit;
-
 --feedbackDetails table
 
 create table feedbackDetails(
@@ -57,7 +57,6 @@ FeedbackDate date,
 foreign key(userId) references registerPage(id),
 foreign key(examId) references examDetails(examId)
 );
-
 
 select * from feedbackDetails;
 commit;

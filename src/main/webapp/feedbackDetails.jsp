@@ -1,5 +1,6 @@
 <%@page import="com.onlineexam.controller.ShowExamDetails"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="com.onlineexam.impl.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -43,7 +44,9 @@ h2{
 </head>
 <body>
 <a href="UserMain.jsp"><h4 style="float:right;margin-right:10px;margin-top:-0.3px;font-size:x-large;color:black;"><u>Home</u></h4></a>
-<% ResultSet rs=ShowExamDetails.showExams();%>
+<% ExamDetailsDao ed=new ExamDetailsDao();
+	ResultSet rs=ed.showExams();
+	%>
 	
 	
 <%int userid= (int)session.getAttribute("userid");

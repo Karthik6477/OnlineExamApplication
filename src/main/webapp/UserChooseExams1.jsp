@@ -1,5 +1,6 @@
 <%@page import="com.onlineexam.controller.ShowExamDetails"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="com.onlineexam.impl.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -49,7 +50,8 @@ body{
 <body>
 	<a href="FilterByDifficulty.html"><h4 style="float: right;margin-right:10px;margin-top:-7px;font-size:x-large;color:black;"><u><b>Back</b></u></h4></a>
 	<h2><u>Exams</u></h2>
-	<% ResultSet rs=ShowExamDetails.showExams();
+	<% ExamDetailsDao ed=new ExamDetailsDao();
+	ResultSet rs=ed.showExams();
 	%>
 	<table style="width: 80%;margin-left: 100px;">
         <tr>
