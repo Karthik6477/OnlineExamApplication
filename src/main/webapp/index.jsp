@@ -38,18 +38,18 @@
       	<% String regres=(String)session.getAttribute("registered");
       	
       	if(regres!=null){%>
-      		<h3 style="margin-left:565px;margin-top:563px; size:70%"><%=session.getAttribute("registered") %></h3> 
+      		<h3 style="margin-left:565px;margin-top:563px; size:70%" class="elementToFadeInAndOut"><%=session.getAttribute("registered") %></h3> 
       	<%} %>
       	
       	<%String message=(String)session.getAttribute("changed");
 	if(message!=null){%>
-		<h3 style="margin-left:565px;margin-top:563px; size:70%"><%=session.getAttribute("changed") %></h3>
+		<h3 style="margin-left:565px;margin-top:563px; size:70%" class="elementToFadeInAndOut"><%=session.getAttribute("changed") %></h3>
 	<% }
 	%>
 	
 	<%String logout=(String)session.getAttribute("logout");
 	if(logout!=null){%>
-		<h3 style="margin-left:569px;margin-top:560px; size:70%;font-size:x-large;"><%=session.getAttribute("logout") %></h3>
+		<h3 style="margin-left:569px;margin-top:560px; size:70%;font-size:x-large;" class="elementToFadeInAndOut"><%=session.getAttribute("logout") %></h3>
 	<% }
 	%>
 		<%session.removeAttribute("logout"); %>

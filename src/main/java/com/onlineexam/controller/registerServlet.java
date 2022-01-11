@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.onlineexam.exception.*;
 import com.onlineexam.exception.EmailAlreadyExistException;
 import com.onlineexam.impl.RegisterDao;
 import com.onlineexam.model.RegisterPojo;
@@ -59,15 +60,9 @@ public class registerServlet extends HttpServlet{
 			e.printStackTrace();
 		} 
 		catch (EmailAlreadyExistException ea) {
-			// TODO Auto-generated catch block
-			//String clear=ea.emailexist();
-			//session.setAttribute("emailexist","Email already exist");
 			res.sendRedirect("errorpage.jsp?message="+ea.getMessage()+"&url=Register.jsp");
 		} 
 		catch (PhoneNumberExistException pn) {
-			// TODO Auto-generated catch block
-			//String Error=pn.phoneNumberExist();
-			//session.setAttribute("phonenumberexist","Phone number already exist");
 			res.sendRedirect("errorpage.jsp?message="+pn.getMessage()+"&url=Register.jsp");
 		}
 	}

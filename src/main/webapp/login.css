@@ -37,6 +37,19 @@
         outline: none;
         height: 20px;
     }    
+.elementToFadeInAndOut {
+    -webkit-animation: fadeinout 0.5s linear forwards;
+    animation: fadeinout 2s linear forwards;
+}
 
+@-webkit-keyframes fadeinout {
+  30%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  70%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
   
         

@@ -24,13 +24,34 @@ body{
         outline: none;
         height: 20px;
 }
+a{
+float:right;
+margin-right:15px;
+margin-top:-535px;
+font-weight:bolder;
+color:black;    	
+}
 </style>
 <title>Password changing</title>
 </head>
+<script>
+    function match() {
+        let ps1 = document.getElementById("password");
+        let ps2 = document.getElementById("cpassword");
+        if (ps1.value.trim() != ps2.value.trim()) {
+            document.getElementById("pws").innerHTML = "Passwords must be same";
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>
 <body>
+<a href="index.jsp"><h2>Back</h2></a>
 <div class="container">
 	<h3><u>Change Password</u></h3>
-	<form action="changepassword" method="post">
+	<form action="changepassword" onsubmit="return match()" method="post">
 	<label for="phone_number">Enter your phone number:</label><br>
     <input type="text" pattern="[6-9]{1}[0-9]{9}" name="phone_number" id="phone_number" required minlength="10" maxlength="10"><br><br>
 	<label for="npassword">Enter your new Password:</label><br>
@@ -38,8 +59,11 @@ body{
 	<label for="cpassword">Confirm new password:</label><br>
     <input type="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&?/*$^]).{8,16}$" title="confirm password must be same as password" name="cpassword" id="cpassword" required minlength="8" maxlength="16"><br><br>
 	<button type="submit">Change Password</button>
+	
+	
 	</form>
 	</div>
+	<p id="pws" style="color: black;margin-left:540px;margin-top:543px;font-weight:bolder;font-size:x-large;"></p>
 	
 </body>
 </html>

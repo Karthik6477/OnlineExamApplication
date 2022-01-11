@@ -21,20 +21,29 @@ public class RegisterDao implements RegisterDaoInterface {
 		ps.setLong(6, rd.getPhone_number());
 		ps.executeUpdate();
 	}
-	public void changepassword(RegisterPojo rp) {
+	public boolean changepassword(RegisterPojo rp) {
 		Connection con=ConnectionPage.connection();
+		boolean flag=false;
+		int i=0;
 		String query="update registerPage set password=?,confirm_password=? where phone_number=?";
 		try {
 			PreparedStatement pstmt=con.prepareStatement(query);
 			pstmt.setString(1, rp.getPassword());
 			pstmt.setString(2, rp.getConfirm_password());
 			pstmt.setLong(3, rp.getPhone_number());
-			pstmt.executeQuery();
+			i=pstmt.executeUpdate();
+			if(i>0) {
+				flag=true;
+			}
+			else {
+				flag=false;
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return flag;
 	}
 	public ResultSet getEmailDetails(RegisterPojo rp) throws SQLException {
 		Connection con=ConnectionPage.connection();
