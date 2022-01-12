@@ -39,20 +39,7 @@
 .addexamalign {
 	text-align: center;
 }
-.elementToFadeInAndOut {
-    -webkit-animation: fadeinout 0.5s linear forwards;
-    animation: fadeinout 2s linear forwards;
-}
 
-@-webkit-keyframes fadeinout {
-  30%,100% { opacity: 0; }
-  50% { opacity: 1; }
-}
-
-@keyframes fadeinout {
-  70%,100% { opacity: 0; }
-  50% { opacity: 1; }
-}
 </style>
 <title>Exam Details Page</title>
 <link rel="stylesheet" href="ExamDetails.css">
@@ -62,44 +49,9 @@
     <div class="container">
 
    
-   <div class="addexamalign">
-   <h2 style="margin-left:80px;"><u>Add Exam</u></h2>
-		<button onclick="addexam()" id="addexam"
-			style="display: block; margin-left: 595px;" class="button examButton">Add
-			Exam</button>
-		<div id="add" style="display: none;">
-			<form action="addExamDetails" method="post">
-				<h2 style="margin-left: 40px;">
-					<u>Add Exam</u>
-				</h2>
-
-
-				<!-- <label for="examId">Exam Id</label> <input type="text" name="examId"
-					id="examId" required><br> <br> --> <label
-					for="examName">Exam Name</label> <input type="text" name="examName"
-					id="examName" required><br> <br> <label
-					for="examType">Exam type</label> <input type="text" name="examType"
-					id="examType" required><br> <br> <label
-					for="difficultyLevel">Difficulty Level</label> <input type="text"
-					name="difficultyLevel" id="difficultyLevel" required><br>
-				<br> <label for="durationHours">Duration Minutes</label> <input
-					type="text" name="durationMinutes" id="durationMinutes" required><br>
-				<br>
-
-
-				<button type="submit" class="button examButton">Add Exam</button>&nbsp;&nbsp;<button type="submit" class="button examButton" onclick="hideadd()">Cancel</button>
-				<br> <br>
-		</div>
-	</div>
-	<% 
-      	if(session.getAttribute("addExamResult")!=null){%>
-	<h3
-		style="margin-left: 10px; margin-top: 20px; size: 70%; text-align: center;" class="elementToFadeInAndOut"><%=session.getAttribute("addExamResult") %></h3>
-	<%} %>
-
-	</form>
-	<h2><u>List of Exams</u></h2>
-   <a href="ShowExams.jsp?"><button type="submit" class="button examButton">Show Exams</button></a><br>
+   
+	<h2 style="margin-left: 80px;"><u>List of Exams</u></h2>
+   <a href="ShowExams.jsp"><button type="submit" class="button examButton">Show Exams</button></a><br>
    <h2><u>List of Users</u></h2>
    <a href="ShowUsers.jsp"><button type="submit" class="button examButton">Show Users</button></a><br>
    <h2><u>List of Exams completed by Users</u></h2>
@@ -108,18 +60,4 @@
    <a href="ShowInactiveUsers.jsp"><button type="submit" class="button examButton">Show inactive users</button></a>
    </div>
 </body>
-<script>
-function addexam(){
-	var add=document.getElementById("addexam");
-	add.style.display="none";
-	var addexam=document.getElementById("add");
-	addexam.style.display="block";
-}
-function hideadd(){
-	var add=document.getElementById("addexam");
-	add.style.display="block";
-	var addexam=document.getElementById("add");
-	addexam.style.display="none";
-}
-</script>
 </html>

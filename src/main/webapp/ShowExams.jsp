@@ -71,6 +71,12 @@ button {
   70%,100% { opacity: 0; }
   50% { opacity: 1; }
 }
+/* .input{
+align-items: center; 
+} */
+/* .examdetails{
+	align-items: center;
+} */
 </style>
 <title>List of Exams</title>
 </head>
@@ -85,7 +91,48 @@ ExamDetailsDao ed=new ExamDetailsDao();
 	<h2 style="margin-left: 40px;">
 		<u>Exams</u>
 	</h2>
-	
+	<div class="addexamalign">
+   <!-- <h2 style="margin-left:80px;"><u>Add Exam</u></h2> -->
+		<button onclick="addexam()" id="addexam"
+			style="display: block; margin-left: 595px;" class="button examButton">Add
+			Exam</button>
+		<div id="add" style="display: none;">
+			<form action="addExamDetails" method="post">
+				<!-- <h2 style="margin-left: -80px;">
+					<u>Add Exam</u>
+				</h2> -->
+
+
+				<!-- <label for="examId">Exam Id</label> <input type="text" name="examId"
+					id="examId" required><br> <br> -->
+					<div class="input">
+					 <div class="examdetails"><label
+					for="examName" style="margin-left:74px;">Exam Name</label> <input type="text" name="examName"
+					id="examName" required><br> <br></div> 
+					<div class="examdetails"><label
+					for="examType" style="margin-left:23px;">Exam type</label> <input type="text" name="examType"
+					id="examType" required><br> <br></div>
+					<div class="examdetails"><label
+					for="difficultyLevel" style="margin-left:-9px;">Difficulty Level</label> <input type="text"
+					name="difficultyLevel" id="difficultyLevel" required><br>
+				<br> </div>
+				<div class="examdetails">
+				<label for="durationHours" style="margin-left:-20px;">Duration Minutes</label> <input
+					type="text" name="durationMinutes" id="durationMinutes" required><br>
+				<br></div>
+
+				</div>
+				<button type="submit" class="button examButton">Add Exam</button>&nbsp;&nbsp;<button type="submit" class="button examButton" onclick="hideadd()">Cancel</button>
+				<br> <br>
+		</div>
+	</div>
+	<% 
+      	if(session.getAttribute("addExamResult")!=null){%>
+	<h3
+		style="margin-left: 10px; margin-top: 20px; size: 70%; text-align: center;" class="elementToFadeInAndOut"><%=session.getAttribute("addExamResult") %></h3>
+	<%} %>
+
+	</form>
 	
 
 	<% 
@@ -160,5 +207,19 @@ ExamDetailsDao ed=new ExamDetailsDao();
 	<% session.removeAttribute("updateExamResult");%>
 	<% session.removeAttribute("deleteExamResult");%>
 </body>
+<script>
+function addexam(){
+	var add=document.getElementById("addexam");
+	add.style.display="none";
+	var addexam=document.getElementById("add");
+	addexam.style.display="block";
+}
+function hideadd(){
+	var add=document.getElementById("addexam");
+	add.style.display="block";
+	var addexam=document.getElementById("add");
+	addexam.style.display="none";
+}
+</script>
 
 </html>

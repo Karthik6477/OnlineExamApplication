@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 public class LoginDao implements LoginDaoInterface {
 	public ResultSet fetchlogin(LoginPojo lc) throws SQLException, ClassNotFoundException {
 		Connection con=ConnectionPage.connection();
@@ -32,6 +33,14 @@ public class LoginDao implements LoginDaoInterface {
 		pst.setString(2, password);
 		ResultSet rs=pst.executeQuery();
 
+		return rs;
+	}
+	public ResultSet userprofile(int userid) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String que="select * from registerPage where id=?";
+		PreparedStatement pstmt=con.prepareStatement(que);
+		pstmt.setInt(1, userid);
+		ResultSet rs=pstmt.executeQuery();
 		return rs;
 	}
 	

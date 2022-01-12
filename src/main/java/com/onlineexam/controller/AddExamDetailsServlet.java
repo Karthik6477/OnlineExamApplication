@@ -33,7 +33,7 @@ public class AddExamDetailsServlet extends HttpServlet {
 			boolean flag=ed.addExam(edp);
 			if(flag) {
 				session.setAttribute("addExamResult","Exam added successfully");
-				res.sendRedirect("ExamDetails.jsp");
+				res.sendRedirect("ShowExams.jsp");
 			}
 			
 		} catch (SQLException e) {

@@ -11,7 +11,8 @@ phone_number number(10) unique not null,
 role varchar2(10) default 'student',
 constraint pk_id primary key(id)
 );
-
+alter table registerPage add profilepicture varchar2(500) default 'iconforuser.png';
+update registerPage set profilepicture='onlineExamReferenceCropped.jpg' where id=22;
 select * from registerPage;
 commit;
 

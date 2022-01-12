@@ -75,4 +75,23 @@ public class RegisterDao implements RegisterDaoInterface {
 		pstmt.setInt(1, rp.getUserid());
 		pstmt.executeUpdate();
 	}
+	public void changephoto(RegisterPojo rp) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="update registerPage set profilepicture=? where id=?";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setString(1, rp.getPhoto());
+		pstmt.setInt(2, rp.getUserid());
+		pstmt.executeUpdate();
+	}
+	public void editprofile(RegisterPojo rp) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="update registerPage set first_name=?,last_name=?,email=?,phone_number=? where id=?";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setString(1, rp.getFirst_name());
+		pstmt.setString(2, rp.getLast_name());
+		pstmt.setString(3, rp.getEmail());
+		pstmt.setLong(4, rp.getPhone_number());
+		pstmt.setInt(5, rp.getUserid());
+		pstmt.executeUpdate();
+	}
 }

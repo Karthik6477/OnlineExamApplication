@@ -8,7 +8,7 @@ public class RegisterPojo {
 	private String password;
 	private String confirm_password;
 	private long phone_number;
-	
+	private String photo;
 	
 	
 	
@@ -30,9 +30,33 @@ public class RegisterPojo {
 	}
 	
 	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	public RegisterPojo(int userid) {
 		super();
 		this.userid = userid;
+	}
+	
+	public RegisterPojo(int userid, String photo) {
+		super();
+		this.userid = userid;
+		this.photo = photo;
+	}
+	
+	
+	
+	
+	public RegisterPojo(int userid, String first_name, String last_name, String email, long phone_number) {
+		super();
+		this.userid = userid;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.email = email;
+		this.phone_number = phone_number;
 	}
 	public String getConfirm_password() {
 		return confirm_password;

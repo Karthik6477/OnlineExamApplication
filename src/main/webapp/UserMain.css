@@ -104,6 +104,7 @@ li a {
 }
 .nav li a
 {
+	margin-right:10px;
 	text-decoration: none;
   font-weight: bold;
 	font-size: 25px;
