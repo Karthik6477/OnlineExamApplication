@@ -94,4 +94,12 @@ public class RegisterDao implements RegisterDaoInterface {
 		pstmt.setInt(5, rp.getUserid());
 		pstmt.executeUpdate();
 	}
+	public void userrequest(RegisterPojo rp) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="update registerPage set reason=? where email=?";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setString(1, rp.getReason());
+		pstmt.setString(2, rp.getEmail());
+		pstmt.executeUpdate();
+	}
 }

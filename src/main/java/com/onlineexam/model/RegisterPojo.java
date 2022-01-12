@@ -9,9 +9,15 @@ public class RegisterPojo {
 	private String confirm_password;
 	private long phone_number;
 	private String photo;
+	private String reason;
 	
 	
 	
+	public RegisterPojo(String email, String reason) {
+		super();
+		this.email = email;
+		this.reason = reason;
+	}
 	public RegisterPojo(long phone_number, String password, String confirm_password) {
 		super();
 		this.phone_number = phone_number;
@@ -30,6 +36,12 @@ public class RegisterPojo {
 	}
 	
 	
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	public String getPhoto() {
 		return photo;
 	}

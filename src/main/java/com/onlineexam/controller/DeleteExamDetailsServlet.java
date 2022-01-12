@@ -1,6 +1,7 @@
 package com.onlineexam.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import com.onlineexam.exception.ExamNotDeleteException;
@@ -16,6 +17,7 @@ import jakarta.websocket.Session;
 @WebServlet("/deleteExamServlet")
 public class DeleteExamDetailsServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException {
+		PrintWriter out=res.getWriter();
 		HttpSession session1=req.getSession();
 		int examId=Integer.parseInt(req.getParameter("examid").toString());
 		ExamDetailsPojo edp=new ExamDetailsPojo(examId);
@@ -40,7 +42,11 @@ public class DeleteExamDetailsServlet extends HttpServlet {
 				throw new ExamNotDeleteException();
 			}
 			catch(ExamNotDeleteException end) {
-				res.sendRedirect("errorpage.jsp?message="+end.getMessage()+"&url=ShowExams.jsp");
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Exam already registered, so could not delete');");
+				out.println("location='ShowExams.jsp';");
+				out.println("</script>");
+				//res.sendRedirect("errorpage.jsp?message="+end.getMessage()+"&url=ShowExams.jsp");
 			}
 			
 			e.printStackTrace();

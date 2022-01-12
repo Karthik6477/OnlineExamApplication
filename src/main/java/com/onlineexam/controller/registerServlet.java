@@ -60,10 +60,18 @@ public class registerServlet extends HttpServlet{
 			e.printStackTrace();
 		} 
 		catch (EmailAlreadyExistException ea) {
-			res.sendRedirect("errorpage.jsp?message="+ea.getMessage()+"&url=Register.jsp");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('email already exist');");
+			out.println("location='Register.jsp';");
+			out.println("</script>");
+			//res.sendRedirect("errorpage.jsp?message="+ea.getMessage()+"&url=Register.jsp");
 		} 
 		catch (PhoneNumberExistException pn) {
-			res.sendRedirect("errorpage.jsp?message="+pn.getMessage()+"&url=Register.jsp");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Phone number already exist');");
+			out.println("location='Register.jsp';");
+			out.println("</script>");
+			//res.sendRedirect("errorpage.jsp?message="+pn.getMessage()+"&url=Register.jsp");
 		}
 	}
 }

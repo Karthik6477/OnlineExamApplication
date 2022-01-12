@@ -12,4 +12,7 @@ public interface RegisterDaoInterface {
 	public ResultSet getPhoneDetails(RegisterPojo rp) throws SQLException;
 	public void updatestatus(RegisterPojo rp) throws SQLException;
 	public void makeactive(RegisterPojo rp) throws SQLException;
+	public void changephoto(RegisterPojo rp) throws SQLException;
+	public void editprofile(RegisterPojo rp) throws SQLException;
+	public void userrequest(RegisterPojo rp) throws SQLException;
 }

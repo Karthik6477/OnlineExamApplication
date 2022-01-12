@@ -1,6 +1,7 @@
 package com.onlineexam.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -20,6 +21,7 @@ public class PasswordChangeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session=req.getSession();
+		PrintWriter out=resp.getWriter();
 		boolean flag;
 		Long adminnum=8870623149l;
 		Long PhoneNumber=Long.parseLong(req.getParameter("phone_number"));
@@ -46,7 +48,11 @@ public class PasswordChangeServlet extends HttpServlet {
 			}
 		}
 		}catch(InvalidPhoneNumberException ipn) {
-			resp.sendRedirect("errorpage.jsp?message="+ipn.getMessage()+"&url=UserPasswordUpdateServlet.jsp");
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Entered phone number is invalid')");
+			out.println("location='UserPasswordUpdateServlet.jsp';");
+			out.println("</script>");
+			//resp.sendRedirect("errorpage.jsp?message="+ipn.getMessage()+"&url=UserPasswordUpdateServlet.jsp");
 		} 
 		
 	}

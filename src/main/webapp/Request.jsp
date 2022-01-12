@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <style>
+<meta charset="ISO-8859-1">
+<title>Request Page</title>
+
+<style>
       @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
 * {
     margin: 0;
@@ -128,54 +127,20 @@ body {
 <body>
     <span class="border border-dark">
     <div class="wrapper">
-        <center><div class="text-center mt-4 name"> Login </div></center>
+        <center><div class="text-center mt-4 name"> Request </div></center>
         <br>
-        <form action="loginserv" method="post" class="p-3 mt-3">
+        <form action="request" method="post" class="p-3 mt-3">
             <div class="input box">
                 <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="email" name="email" id="email" placeholder="email" required autofocus> </div>
                 <br>
             </div>
-               <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="password" id="password" placeholder="Password" required> </div>
+               <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="text" name="reason" id="reason" placeholder="reason" required> </div>
                <br>
             
             
             
-            <button type="submit" class="btn mt-3" style="cursor: pointer;">Login</button>
+            <button type="submit" class="btn mt-3" style="cursor: pointer;">Submit</button>
             <br>
         </form>
-        <br>
-       
-        
-        <center>
-        <div class="pagination"> 
-            <a href="UserPasswordUpdateServlet.jsp">Forgot password?</a>  <br>
-            <br>
-            
-            <a href="Register.jsp">Sign up</a> </div>
-    </div> 
-<% String regres=(String)session.getAttribute("registered");
-      	
-      	if(regres!=null){%>
-      		<h3 style="margin-left:565px;margin-top:563px; size:70%" class="elementToFadeInAndOut"><%=session.getAttribute("registered") %></h3> 
-      	<%} %>
-      	
-      	<%String message=(String)session.getAttribute("changed");
-	if(message!=null){%>
-		<h3 style="margin-left:565px;margin-top:563px; size:70%" class="elementToFadeInAndOut"><%=session.getAttribute("changed") %></h3>
-	<% }
-	%>
-	
-	<%String logout=(String)session.getAttribute("logout");
-	if(logout!=null){%>
-		<h3 style="margin-left:555px;margin-top:20px; size:70%;font-size:x-large;" class="elementToFadeInAndOut"><%=session.getAttribute("logout") %></h3>
-	<% }
-	%>
-	
-		<%session.removeAttribute("logout"); %>
-		<%session.removeAttribute("changed"); %>
-        <% session.removeAttribute("loginResult");%>
-        <% session.removeAttribute("registered");%>
-</span>
-</center>
 </body>
 </html>

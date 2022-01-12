@@ -31,10 +31,11 @@ text-align:center;
 <body>
 <h1><u>All Exams</u></h1>
 		<a id="ExamDetails" href="ExamDetails.jsp"><h4 style="float: right;margin-right:10px;margin-top:-50px;font-size:x-large;color:black;"><u>Back</u></h4></a>
-	<form action="filterdate" method="post"><div style="text-align:center;">
-	<h3>Filter by date <input type="date" name="date"></h3></div></form>
+	<form action="FilterExamsByDate.jsp" method="post"><div style="text-align:center;">
+	<h3>Filter by date <input type="date" name="date"></h3></div>
+	<center><button type="submit">submit</button></center></form><br><br>
 	
-	<%String examdate=request.getParameter("examdate");
+	<%String examdate=request.getParameter("date");
 	ScoreDetails sd=new ScoreDetails(examdate);
 	ResultSet rs=ScoreDetailsDao.filterbydate(sd); %>
 	<table style="width: 80%;margin-left: 100px;font-size:large;">

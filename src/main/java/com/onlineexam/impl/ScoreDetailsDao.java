@@ -33,7 +33,7 @@ public class ScoreDetailsDao implements ScoreDetailsDaoInterface{
 	}
 	public static ResultSet filterbydate(ScoreDetails sd) throws SQLException {
 		Connection con=ConnectionPage.connection();
-		String query="select * from scoreDetails where examdate=? order by examdate desc";
+		String query="select * from scoreDetails where to_char(trunc(examdate),'yyyy-mm-dd')=? order by examdate desc";
 		PreparedStatement pstmt=con.prepareStatement(query);
 		pstmt.setString(1, sd.getExamdate());
 		ResultSet rs=pstmt.executeQuery();

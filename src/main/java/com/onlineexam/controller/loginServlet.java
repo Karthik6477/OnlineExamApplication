@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 
+import com.onlineexam.exception.InactiveUserException;
 import com.onlineexam.exception.InvalidUserException;
 import com.onlineexam.impl.LoginDao;
 import com.onlineexam.model.LoginPojo;
@@ -18,6 +19,7 @@ import jakarta.servlet.http.HttpSession;
 public class loginServlet extends HttpServlet
 {
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException {
+		PrintWriter out=res.getWriter();
 		String email=req.getParameter("email");
 		String password=req.getParameter("password");
 		LoginPojo lp=new LoginPojo(email, password);
@@ -45,6 +47,9 @@ public class loginServlet extends HttpServlet
 				else if(role.equals("student")){
 					res.sendRedirect("UserMain.jsp");
 				}
+				else if(role.equals("inactive")) {
+					throw new InactiveUserException();
+				}
 				
 				else {
 					HttpSession session=req.getSession();
@@ -60,16 +65,29 @@ public class loginServlet extends HttpServlet
 			}}
 			catch(InvalidUserException iv) {
 //				String clear=iv.invaliduser();
-				res.sendRedirect("errorpage.jsp?message="+iv.getMessage()+"&url=index.jsp");
+				
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Invalid username or password');");
+				out.println("location='index.jsp';");
+				out.println("</script>");
+				
+				//res.sendRedirect("errorpage.jsp?message="+iv.getMessage()+"&url=index.jsp");
 			
 //				HttpSession session=req.getSession();
 //				session.setAttribute("loginResult","Invalid username or password");
 				//res.sendRedirect("index.jsp");
 //			
-		} catch (Exception e) {
+		}catch(InactiveUserException e) {
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('You are in inactive mode.Request admin to activate');");
+			out.println("location='Request.jsp';");
+			out.println("</script>");
+		} 
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			}
+		
 	}
 	
 }
