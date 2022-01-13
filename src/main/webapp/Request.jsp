@@ -134,7 +134,7 @@ body {
                 <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="email" name="email" id="email" placeholder="email" required autofocus> </div>
                 <br>
             </div>
-               <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="text" name="reason" id="reason" placeholder="reason" required> </div>
+               <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="text" name="reason" id="reason" placeholder="request" required> </div>
                <br>
             
             

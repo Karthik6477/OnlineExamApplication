@@ -73,9 +73,6 @@ public class loginServlet extends HttpServlet
 				
 				//res.sendRedirect("errorpage.jsp?message="+iv.getMessage()+"&url=index.jsp");
 			
-//				HttpSession session=req.getSession();
-//				session.setAttribute("loginResult","Invalid username or password");
-				//res.sendRedirect("index.jsp");
 //			
 		}catch(InactiveUserException e) {
 			out.println("<script type=\"text/javascript\">");

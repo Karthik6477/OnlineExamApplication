@@ -34,7 +34,7 @@ Password   :Karthik@6477
 
 6.Admin Can View User Exams report
 
-
+7.Admin Can make user as inactive and active
 
 ## User
 
@@ -59,3 +59,5 @@ Password  :Mari@3009
 7.User Can contact admin
 
 8.User Can change password
+
+9.User can request admin if user in inactive mode
