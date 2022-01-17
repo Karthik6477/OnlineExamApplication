@@ -136,9 +136,9 @@ body {
                 <br>
             </div>
                <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="password" id="password" placeholder="Password" required> </div>
-               <br>
+               
             
-            
+            <input type="checkbox" onclick="myFunction()">Show Password<br><br>
             
             <button type="submit" class="btn mt-3" style="cursor: pointer;">Login</button>
             <br>
@@ -178,4 +178,14 @@ body {
 </span>
 </center>
 </body>
+<script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 </html>

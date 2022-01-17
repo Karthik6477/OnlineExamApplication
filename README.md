@@ -48,7 +48,7 @@ UserEmail :pothi@gmail.com
 Password  :Pothi@1230
 
 UserEmail :mari@gmail.com
-Password  :Mari@3009
+Password  :Mari@3090
 
 1.User Can Resgiter Details
 
