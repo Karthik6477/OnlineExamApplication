@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import com.onlineexam.exception.InactiveUserException;
 import com.onlineexam.exception.InvalidUserException;
 import com.onlineexam.impl.LoginDao;
+import com.onlineexam.impl.RegisterDao;
 import com.onlineexam.model.LoginPojo;
+import com.onlineexam.model.RegisterPojo;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -45,6 +47,9 @@ public class loginServlet extends HttpServlet
 					res.sendRedirect("AdminMain.jsp");
 				}
 				else if(role.equals("student")){
+					RegisterPojo rp=new RegisterPojo(userid);
+					RegisterDao rd=new RegisterDao();
+					rd.updateactivedate(rp);
 					res.sendRedirect("UserMain.jsp");
 				}
 				else if(role.equals("inactive")) {
@@ -67,7 +72,7 @@ public class loginServlet extends HttpServlet
 //				String clear=iv.invaliduser();
 				
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('Invalid username or password');");
+				out.println("alert('Invalid email id or password');");
 				out.println("location='index.jsp';");
 				out.println("</script>");
 				

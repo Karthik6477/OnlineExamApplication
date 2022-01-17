@@ -73,5 +73,9 @@ public class ScoreDetails {
 		return "ScoreDetails [studentId=" + studentId + ", examId=" + examId + ", examName=" + examName + ", score="
 				+ score + ", passOrFail=" + passOrFail + ", grade=" + grade + "]";
 	}
+	public ScoreDetails(int studentId) {
+		super();
+		this.studentId = studentId;
+	}
 	
 }

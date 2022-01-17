@@ -5,8 +5,56 @@
 
 <head>
     <meta charset="ISO-8859-1">
-    <link rel="stylesheet" href="register.css">
+    <!-- <link rel="stylesheet" href="register.css"> -->
     <title>Register page</title>
+    
+<style>
+h3{
+	float:right;
+	margin-top:10px;
+	margin-right:10px;
+	font-weight:bolder;
+	font-size:x-large;
+	color:black;
+}
+body{
+    background: linear-gradient(to right, springgreen, rgb(253, 253, 53));
+}
+.registerform{
+    background-color: whitesmoke;
+    height: 500px;
+    width: 400px;
+    position: absolute;
+    left: 480px;
+    top: 70px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+}
+.registerform .registerformcontent{
+    position: relative;
+    padding-left: 110px;
+    bottom: 25px;
+    left: -40px;
+}
+.registerform .registerformcontent button{
+    
+    position: relative;
+    left: 80px;
+    bottom: 30px;
+    font-weight:bolder;
+    color:black;
+}
+.registerform .registerformcontent input{
+   width: 250px;
+   height: 20px;
+   border-radius: 2px;
+}
+.registerform .registerformcontent h1{
+    position: relative;
+    left: 45px;
+    top: 20px;
+ }
+</style>
 </head>
 <script>
     function match() {
@@ -23,6 +71,7 @@
 </script>
 
 <body>
+<a href="index.jsp"><h3><u>Back</u></h3></a>
     <div class="registerform">
 
         <form action="register" onsubmit="return match()" method="post">
@@ -47,17 +96,17 @@
                     minlength="8" maxlength="16"><br><br>
                 <label for="phone_number">Phone number :</label><br>
                 <input type="text" pattern="[6-9]{1}[0-9]{9}" name="phone_number" id="phone_number" required
-                    minlength="10" maxlength="10"><br><br><br>
+                    minlength="10" maxlength="10"><br><br><br><br>
                     
                     <button type="submit" style="margin-left:-15px;">Submit</button>&nbsp;&nbsp;
-                <button type="reset">Reset</button>
-                <a href="index.jsp" style="font-size:x-large;margin-left:-7px;color:black;">login</a>
+                <button type="reset">Reset</button><br>
+                
                 
                 
             </div>
             <p id="pws" style="color: black;margin-left:70px;font-weight:bolder;font-size:x-large;"></p>
         </form>
-        
+        <!-- <center><a href="" style="font-size:x-large;margin-left:-24px;margin-top:-7px;color:black;">login</a></center> -->
     </div>
     
     <%	String error1=(String)session.getAttribute("phonenumberexist");

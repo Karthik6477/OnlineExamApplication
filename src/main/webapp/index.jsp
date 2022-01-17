@@ -153,7 +153,7 @@ body {
             
             <a href="Register.jsp">Sign up</a> </div>
     </div> 
-<% String regres=(String)session.getAttribute("registered");
+	<% String regres=(String)session.getAttribute("registered");
       	
       	if(regres!=null){%>
       		<h3 style="margin-left:565px;margin-top:563px; size:70%" class="elementToFadeInAndOut"><%=session.getAttribute("registered") %></h3> 

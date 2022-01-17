@@ -19,12 +19,12 @@ body {
    background: linear-gradient(to right, springgreen, rgb(253, 253, 53));
 
 }
-div{
+.container{
 text-align:center;
 margin-top:80px;
 }
 a{
-margin-top:-80px;
+margin-top:-55px;
 font-size:x-large;
 font-weight:bolder;
 }
@@ -32,10 +32,13 @@ font-weight:bolder;
 margin-left:150px;
 }
 .emailalign{
-margin-left:10px;
+margin-left:25px;
 }
 .phonealign{
-margin-left:-10px;
+margin-left:-30px;
+}
+img{
+border:3px groove black;
 }
 </style>
 <title>User Profile</title>
@@ -45,19 +48,22 @@ margin-left:-10px;
 	LoginDao ld=new LoginDao();
 	ResultSet rs=ld.userprofile(userid);%>
 	<a href="UserMain.jsp">Home</a>
-	<div>
+	<div class="container">
 	<%while(rs.next()){%>
 		<img src="images/<%=rs.getString(9) %>" style="border-radius:50%;height:250px;width:260px;border-color:black"><br><br>
+		
+		<center><button id="photo" onclick="photochange()" style="display: block;">Change photo</button></center>
+		<div id="photochange" style="display: none;">
 		<form action="changeprofile" method="post">
 		<input type="file" id="avatar" name="avatar" class="choosefile"><br><br>
 		<button type="submit">Change photo</button>
-		</form>
+		</form></div>
 		<br>
 		<form action="editprofile" method="post">
 		<label for="firstname">Firstname : </label><input type="text" name="firstname" id="firstname" value="<%=rs.getString(2) %>"><br><br>
 		<label for="lastname">Lastname : </label><input type="text" name="lastname" id="lastname" value="<%=rs.getString(3) %>"><br><br>
-		Email : <input type="email" name="email" id="email" value="<%=rs.getString(4) %>" readonly class="emailalign"><br><br>
-		Phone number :<input type="text" name="phone" id="phone" value="<%=rs.getLong(7) %>" class="phonealign"><br><br>
+		<label for="email" class="emailalign">Email : </label><input type="email" name="email" id="email" value="<%=rs.getString(4) %>" readonly><br><br>
+		<label for="phone" class="phonealign">Phone number : </label><input type="text" name="phone" id="phone" value="<%=rs.getLong(7) %>"><br><br>
 		<button type="submit">Edit Profile</button>
 		</form></div>
 		
@@ -66,4 +72,12 @@ margin-left:-10px;
 		<h3><%=session.getAttribute("editres") %></h3>
 		<%} %>
 </body>
+<script>
+function photochange(){
+	let photo=document.getElementById("photo");
+	photo.style.display="none";
+	let photochange=document.getElementById("photochange");
+	photochange.style.display="block";
+}
+</script>
 </html>

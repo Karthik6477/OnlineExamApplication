@@ -18,7 +18,7 @@
 	ResultSet rs=ld.userprofile(userid);
     rs.next();
     %>
-    <a href="UserProfile.jsp"><img class="imgalign" src="images/<%=rs.getString(9) %>" height="50px" width="55px" style="float:right;border-radius: 50%;margin-right:10px;margin-top:-3px;border-color: black;" title="My Profile"></a>
+    <a href="UserProfile.jsp"><img class="imgalign" src="images/<%=rs.getString(9) %>" height="50px" width="55px" style="float:right;border-radius: 50%;margin-right:10px;margin-top:-3px;border:1px groove black;" title="My Profile"></a>
     <ul class="nav">
         <li><a class="a1" href="index.jsp?message=<%ses.setAttribute("logout", "Logged out successfully");%>">Logout</a></li>
         <li><a class="a1" href="ContactUs.jsp?userid=<%=userid%>">Contact us</a></li>

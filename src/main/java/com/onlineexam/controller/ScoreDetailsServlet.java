@@ -2,7 +2,9 @@ package com.onlineexam.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import com.onlineexam.impl.RegisterDao;
 import com.onlineexam.impl.ScoreDetailsDao;
+import com.onlineexam.model.RegisterPojo;
 import com.onlineexam.model.ScoreDetails;
 
 import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -21,9 +23,12 @@ public class ScoreDetailsServlet extends HttpServlet {
 		String passOrFail=req.getParameter("passOrFail");
 		String grade=req.getParameter("grade");
 		ScoreDetails sd=new ScoreDetails(userId,ExamId,ExamName,score,passOrFail,grade);
+		//RegisterPojo rp=new RegisterPojo(userId);
 		ScoreDetailsDao sdd=new ScoreDetailsDao();
+		//RegisterDao rd=new RegisterDao();
 		try {
 			sdd.insertScore(sd);
+			//rd.updatelastdate(rp);
 			res.sendRedirect("ExamResult.jsp?userid="+userId+"&examid="+ExamId+"&examName="+ExamName+"&score="+score+"&passfail="+passOrFail+"&grade="+grade);
 			
 			

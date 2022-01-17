@@ -33,7 +33,7 @@ text-align:center;
 		<a id="ExamDetails" href="ExamDetails.jsp"><h4 style="float: right;margin-right:10px;margin-top:-50px;font-size:x-large;color:black;"><u>Back</u></h4></a>
 	<form action="FilterExamsByDate.jsp" method="post"><div style="text-align:center;">
 	<h3>Filter by date <input type="date" name="date"></h3></div>
-	<center><button type="submit">submit</button></center></form><br><br>
+	<center><button type="submit">submit</button></center></form>&nbsp;<center><a href="ShowUsersExams.jsp"><button>View all</button></a></center><br><br>
 	
 	<%String examdate=request.getParameter("date");
 	ScoreDetails sd=new ScoreDetails(examdate);

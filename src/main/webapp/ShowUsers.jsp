@@ -63,6 +63,7 @@ body{
             <th>Last Name</th>
             <th>Email</th>
             <th>Phone Number</th>
+            <th>Last active date</th>
             <th>Status</th>
         </tr>
         <% while(rs.next()){ %>
@@ -72,6 +73,7 @@ body{
                 <td><%=rs.getString(3)%></td>
                 <td><%=rs.getString(4)%></td>
                 <td><%=rs.getString(7)%></td>
+                <td><%=rs.getString(11)%></td>
                 <form action="userstatus?userid=<%=rs.getInt(1) %>" method="post">
                 <td><center><button type="submit" class="button examButton">Make Inactive</button></center></td></form>
             </tr>

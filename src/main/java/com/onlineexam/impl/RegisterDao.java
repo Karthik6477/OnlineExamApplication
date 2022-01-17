@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class RegisterDao implements RegisterDaoInterface {
 	public void fetchregister(RegisterPojo rd) throws ClassNotFoundException, SQLException {
 		Connection con=ConnectionPage.connection();
-		String query="insert into registerPage(first_name,last_name,email,password,confirm_password,phone_number) values(?,?,?,?,?,?)";
+		String query="insert into registerPage(first_name,last_name,email,password,confirm_password,phone_number,lastactivedate) values(?,?,?,?,?,?,sysdate)";
 		PreparedStatement ps=con.prepareStatement(query);
 		ps.setString(1, rd.getFirst_name());
 		ps.setString(2, rd.getLast_name());
@@ -100,6 +100,21 @@ public class RegisterDao implements RegisterDaoInterface {
 		PreparedStatement pstmt=con.prepareStatement(query);
 		pstmt.setString(1, rp.getReason());
 		pstmt.setString(2, rp.getEmail());
+		pstmt.executeUpdate();
+	}
+	public void updatelastdate(RegisterPojo rp) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="update registerPage set lastactivedate=(select max(examdate) from scoreDetails where studentId=?) where id=?";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setInt(1, rp.getUserid());
+		pstmt.setInt(2, rp.getUserid());
+		pstmt.executeUpdate();
+	}
+	public void updateactivedate(RegisterPojo rp) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="update registerPage set lastactivedate=sysdate where id=?";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setInt(1, rp.getUserid());
 		pstmt.executeUpdate();
 	}
 }

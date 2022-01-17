@@ -24,7 +24,7 @@
       <h1>Explore the Exam</h1>
       <h1 style="margin-left: 70px;">Exclusively</h1>
       <h1 style="margin-left: 40px;">made for you</h1><br><br>
-      <h4><a href=""><button style="margin-left: 80px; margin-right: 60px;" class="button examButton">Take Exam</button></a><a href="StudyMaterialsAdmin.jsp"><button style="margin-right: 70px;" class="button studyButton">Study</button></a></h4>
+      <h4><a href=""><button style="margin-left: 80px; margin-right: 60px;" class="button examButton">Take Exam</button></a><a href=""><button style="margin-right: 70px;" class="button studyButton">Study</button></a></h4>
     </div>
     <img src="images/onlineExamReferenceRemovedBackground.png" class="image">
     

@@ -32,9 +32,15 @@ Password   :Karthik@6477
 
 5.Admin Can View All Exams
 
-6.Admin Can View User Exams report
+6.Admin Can View User Exams report.
 
-7.Admin Can make user as inactive and active
+7.Admin Can filter exam report by date.
+
+8.Admin Can make user as inactive and active
+
+9.Admin Can view user's last active date.
+
+10.Admin can view user's feedbacks and complaints.
 
 ## User
 
@@ -61,3 +67,5 @@ Password  :Mari@3009
 8.User Can change password
 
 9.User can request admin if user in inactive mode
+
+10.User can view and edit their profile
