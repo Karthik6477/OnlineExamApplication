@@ -29,9 +29,21 @@ text-align:center;
 <body>
 <h1><u>All Exams</u></h1>
 		<a id="ExamDetails" href="ExamDetails.jsp"><h4 style="float: right;margin-right:10px;margin-top:-50px;font-size:x-large;color:black;"><u>Back</u></h4></a>
-	<form action="FilterExamsByDate.jsp" method="post"><div style="text-align:center;">
-	<h3>Filter by date <input type="date" name="date"></h3></div>
-	<center><button type="submit">submit</button></center></form><br><br>
+	<div style="margin-left:100px;"><form action="FilterExamsByDate.jsp" method="post">
+	<h3>Filter by date <input type="date" name="date"></h3>
+	<button type="submit" style="margin-left:75px;">submit</button></form>
+	
+	<div style="margin-left:330px;margin-top:-80px;">
+	<form action="FilterExamsByPOF.jsp" method="post">
+	<h3>Filter by pass or fail <input type="text" name="pof"></h3>
+	<button type="submit" style="margin-left:140px;">submit</button></form></div>
+	
+	<div style="margin-left:750px;margin-top:-80px;">
+	<form action="FilterExamsByGrade.jsp" method="post">
+	<h3>Filter by Grade <input type="text" name="grade"></h3>
+	<button type="submit" style="margin-left:120px;">submit</button></form></div></div>
+	
+	<br><br>
 	
 	<%
 	ResultSet rs=ShowUsersDetails.viewAllScore(); %>

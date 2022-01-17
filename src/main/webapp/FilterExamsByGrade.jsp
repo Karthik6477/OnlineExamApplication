@@ -47,9 +47,9 @@ text-align:center;
 	
 	<center><a href="ShowUsersExams.jsp"><button>View all</button></a></center><br><br>
 	
-	<%String examdate=request.getParameter("date");
-	ScoreDetails sd=new ScoreDetails(examdate);
-	ResultSet rs=ScoreDetailsDao.filterbydate(sd); %>
+	<%String grade=request.getParameter("grade");
+	ScoreDetails sd=new ScoreDetails(null,grade);
+	ResultSet rs=ScoreDetailsDao.filterbygrade(sd); %>
 	<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
             <th>Student Id</th>

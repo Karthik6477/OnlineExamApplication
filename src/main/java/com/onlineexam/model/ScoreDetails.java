@@ -68,6 +68,17 @@ public class ScoreDetails {
 		// TODO Auto-generated constructor stub
 		this.examdate=examdate;
 	}
+	
+	public ScoreDetails(int score, String passOrFail) {
+		super();
+		this.score = score;
+		this.passOrFail = passOrFail;
+	}
+	public ScoreDetails(String passOrFail, String grade) {
+		super();
+		this.passOrFail = passOrFail;
+		this.grade = grade;
+	}
 	@Override
 	public String toString() {
 		return "ScoreDetails [studentId=" + studentId + ", examId=" + examId + ", examName=" + examName + ", score="

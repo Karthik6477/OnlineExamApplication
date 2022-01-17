@@ -39,5 +39,20 @@ public class ScoreDetailsDao implements ScoreDetailsDaoInterface{
 		ResultSet rs=pstmt.executeQuery();
 		return rs;
 	}
-	
+	public static ResultSet filterbygrade(ScoreDetails sd) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="select * from scoreDetails where grade=?";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setString(1, sd.getGrade());
+		ResultSet rs=pstmt.executeQuery();
+		return rs;
+	}
+	public static ResultSet filterbyPOF(ScoreDetails sd) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="select * from scoreDetails where passOrFail=?";
+		PreparedStatement pstmt=con.prepareStatement(query);
+		pstmt.setString(1, sd.getPassOrFail());
+		ResultSet rs=pstmt.executeQuery();
+		return rs;
+	}
 }
