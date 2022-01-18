@@ -2,7 +2,7 @@ package com.onlineexam.model;
 
 import java.util.Date;
 
-public class ScoreDetails {
+public class ScoreDetailsPojo {
 	private int studentId;
 	private int examId;
 	private String examName;
@@ -55,7 +55,7 @@ public class ScoreDetails {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public ScoreDetails(int studentId, int examId, String examName, int score, String passOrFail, String grade) {
+	public ScoreDetailsPojo(int studentId, int examId, String examName, int score, String passOrFail, String grade) {
 		super();
 		this.studentId = studentId;
 		this.examId = examId;
@@ -64,17 +64,17 @@ public class ScoreDetails {
 		this.passOrFail = passOrFail;
 		this.grade = grade;
 	}
-	public ScoreDetails(String examdate) {
+	public ScoreDetailsPojo(String examdate) {
 		// TODO Auto-generated constructor stub
 		this.examdate=examdate;
 	}
 	
-	public ScoreDetails(int score, String passOrFail) {
+	public ScoreDetailsPojo(int score, String passOrFail) {
 		super();
 		this.score = score;
 		this.passOrFail = passOrFail;
 	}
-	public ScoreDetails(String passOrFail, String grade) {
+	public ScoreDetailsPojo(String passOrFail, String grade) {
 		super();
 		this.passOrFail = passOrFail;
 		this.grade = grade;
@@ -84,7 +84,7 @@ public class ScoreDetails {
 		return "ScoreDetails [studentId=" + studentId + ", examId=" + examId + ", examName=" + examName + ", score="
 				+ score + ", passOrFail=" + passOrFail + ", grade=" + grade + "]";
 	}
-	public ScoreDetails(int studentId) {
+	public ScoreDetailsPojo(int studentId) {
 		super();
 		this.studentId = studentId;
 	}

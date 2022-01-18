@@ -13,6 +13,12 @@ public class RegisterPojo {
 	
 	
 	
+	public RegisterPojo(int userid, String email, String password) {
+		super();
+		this.userid = userid;
+		this.email = email;
+		this.password = password;
+	}
 	public RegisterPojo(String email, String reason) {
 		super();
 		this.email = email;

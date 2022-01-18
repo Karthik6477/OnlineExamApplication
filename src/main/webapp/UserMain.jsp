@@ -14,8 +14,8 @@
 <body>
     <%int userid=(int)session.getAttribute("userid");
     HttpSession ses=request.getSession();
-    LoginDao ld=new LoginDao();
-	ResultSet rs=ld.userprofile(userid);
+    RegisterDao rd=new RegisterDao();
+	ResultSet rs=rd.userprofile(userid);
     rs.next();
     %>
     <a href="UserProfile.jsp"><img class="imgalign" src="images/<%=rs.getString(9) %>" height="50px" width="55px" style="float:right;border-radius: 50%;margin-right:10px;margin-top:-3px;border:1px groove black;" title="My Profile"></a>

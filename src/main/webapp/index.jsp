@@ -132,10 +132,12 @@ body {
         <br>
         <form action="loginserv" method="post" class="p-3 mt-3">
             <div class="input box">
-                <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="email" name="email" id="email" placeholder="email" required autofocus> </div>
+                <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="email" name="email" id="email" placeholder="email" pattern="[a-z0-9]+[@][a-zA-Z]+[.][a-z]+"
+                  title="You have to insert @ and . in the username ex.abc@gmail.com" required autofocus> </div>
                 <br>
             </div>
-               <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="password" id="password" placeholder="Password" required> </div>
+               <div class="form-field d-flex align-items-center"> <span class="fas fa-key"></span> <input type="password" name="password" id="password" placeholder="Password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&?/*$^]).{8,16}$"
+                    title="Minimum 8 characters should be there.There should be atleast one numeric,special character,capital letter and small letter." required> </div>
                
             
             <input type="checkbox" onclick="myFunction()">Show Password<br><br>

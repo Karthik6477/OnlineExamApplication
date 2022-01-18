@@ -45,8 +45,8 @@ border:3px groove black;
 </head>
 <body>
 	<%int userid=(int)session.getAttribute("userid"); 
-	LoginDao ld=new LoginDao();
-	ResultSet rs=ld.userprofile(userid);%>
+	RegisterDao rd=new RegisterDao();
+	ResultSet rs=rd.userprofile(userid);%>
 	<a href="UserMain.jsp">Home</a>
 	<div class="container">
 	<%while(rs.next()){%>

@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class RegisterDao implements RegisterDaoInterface {
 	public void fetchregister(RegisterPojo rd) throws ClassNotFoundException, SQLException {
@@ -116,5 +117,59 @@ public class RegisterDao implements RegisterDaoInterface {
 		PreparedStatement pstmt=con.prepareStatement(query);
 		pstmt.setInt(1, rp.getUserid());
 		pstmt.executeUpdate();
+	}
+	public  ResultSet showUsers() {
+		Connection con=ConnectionPage.connection();
+		String query="select * from registerPage where role='student'";
+		ResultSet rs=null;
+		try {
+			Statement st=con.createStatement();
+			rs=st.executeQuery(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	public  ResultSet showInactiveUsers() {
+		Connection con=ConnectionPage.connection();
+		String query="select * from registerPage where role='inactive'";
+		ResultSet rs=null;
+		try {
+			Statement st=con.createStatement();
+			rs=st.executeQuery(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	public ResultSet fetchlogin(RegisterPojo rp) throws SQLException, ClassNotFoundException {
+		Connection con=ConnectionPage.connection();
+		String query="select * from registerPage where email=? and password=?";
+		PreparedStatement ps=con.prepareStatement(query);
+		ps.setString(1, rp.getEmail());
+		ps.setString(2, rp.getPassword());
+		ResultSet rs= ps.executeQuery();
+		return rs;
+		
+	}
+	public  ResultSet validUser(String email,String password) throws ClassNotFoundException, SQLException {
+		Connection con=ConnectionPage.connection();
+		String que="select * from registerPage where email=? and password=?";
+		PreparedStatement pst=con.prepareStatement(que);
+		pst.setString(1, email);
+		pst.setString(2, password);
+		ResultSet rs=pst.executeQuery();
+
+		return rs;
+	}
+	public ResultSet userprofile(int userid) throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String que="select * from registerPage where id=?";
+		PreparedStatement pstmt=con.prepareStatement(que);
+		pstmt.setInt(1, userid);
+		ResultSet rs=pstmt.executeQuery();
+		return rs;
 	}
 }

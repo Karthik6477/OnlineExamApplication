@@ -1,4 +1,4 @@
-<%@page import="com.onlineexam.controller.ShowUsersDetails"%>
+<%@page import="com.onlineexam.impl.*"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -54,8 +54,8 @@ body{
     	%><h3 style="text-align:center;"><%=session.getAttribute("madeactive") %></h3><% 
     }%>
 	
-	<% ShowUsersDetails sd=new ShowUsersDetails();
-	ResultSet rs=sd.showInactiveUsers(); %>
+	<% RegisterDao rd=new RegisterDao();
+	ResultSet rs=rd.showInactiveUsers(); %>
 	<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
             <th>User Id</th>

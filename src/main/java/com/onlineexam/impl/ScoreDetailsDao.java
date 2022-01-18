@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.onlineexam.dao.*;
-import com.onlineexam.model.ScoreDetails;
+import com.onlineexam.model.ScoreDetailsPojo;
 import com.onlineexam.util.ConnectionPage;
 public class ScoreDetailsDao implements ScoreDetailsDaoInterface{
-	public void insertScore(ScoreDetails sd) throws SQLException {
+	public void insertScore(ScoreDetailsPojo sd) throws SQLException {
 		Connection con=ConnectionPage.connection();
 		String query="insert into scoreDetails(studentid,examid,examname,score,passorfail,grade,examdate) values(?,?,?,?,?,?,sysdate)";
 		PreparedStatement pstmt=con.prepareStatement(query);
@@ -31,7 +31,7 @@ public class ScoreDetailsDao implements ScoreDetailsDaoInterface{
 		ResultSet rs=pstmt.executeQuery();
 		return rs;
 	}
-	public static ResultSet filterbydate(ScoreDetails sd) throws SQLException {
+	public  ResultSet filterbydate(ScoreDetailsPojo sd) throws SQLException {
 		Connection con=ConnectionPage.connection();
 		String query="select * from scoreDetails where to_char(trunc(examdate),'yyyy-mm-dd')=? order by examdate desc";
 		PreparedStatement pstmt=con.prepareStatement(query);
@@ -39,7 +39,7 @@ public class ScoreDetailsDao implements ScoreDetailsDaoInterface{
 		ResultSet rs=pstmt.executeQuery();
 		return rs;
 	}
-	public static ResultSet filterbygrade(ScoreDetails sd) throws SQLException {
+	public  ResultSet filterbygrade(ScoreDetailsPojo sd) throws SQLException {
 		Connection con=ConnectionPage.connection();
 		String query="select * from scoreDetails where grade=?";
 		PreparedStatement pstmt=con.prepareStatement(query);
@@ -47,12 +47,25 @@ public class ScoreDetailsDao implements ScoreDetailsDaoInterface{
 		ResultSet rs=pstmt.executeQuery();
 		return rs;
 	}
-	public static ResultSet filterbyPOF(ScoreDetails sd) throws SQLException {
+	public  ResultSet filterbyPOF(ScoreDetailsPojo sd) throws SQLException {
 		Connection con=ConnectionPage.connection();
 		String query="select * from scoreDetails where passOrFail=?";
 		PreparedStatement pstmt=con.prepareStatement(query);
 		pstmt.setString(1, sd.getPassOrFail());
 		ResultSet rs=pstmt.executeQuery();
+		return rs;
+	}
+	public  ResultSet viewAllScore() throws SQLException {
+		Connection con=ConnectionPage.connection();
+		String query="select * from scoreDetails order by examdate desc";
+		ResultSet rs=null;
+		try {
+			Statement st=con.createStatement();
+			rs=st.executeQuery(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return rs;
 	}
 }

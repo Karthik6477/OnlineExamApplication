@@ -6,9 +6,7 @@ import java.sql.ResultSet;
 
 import com.onlineexam.exception.InactiveUserException;
 import com.onlineexam.exception.InvalidUserException;
-import com.onlineexam.impl.LoginDao;
 import com.onlineexam.impl.RegisterDao;
-import com.onlineexam.model.LoginPojo;
 import com.onlineexam.model.RegisterPojo;
 
 import jakarta.servlet.ServletException;
@@ -24,15 +22,17 @@ public class loginServlet extends HttpServlet
 		PrintWriter out=res.getWriter();
 		String email=req.getParameter("email");
 		String password=req.getParameter("password");
-		LoginPojo lp=new LoginPojo(email, password);
-		LoginDao ld=new LoginDao();
+		RegisterPojo rp=new RegisterPojo(0,email,password);
+		RegisterDao rd=new RegisterDao();
+		//LoginPojo lp=new LoginPojo(email, password);
+		//LoginDao ld=new LoginDao();
 		int userid;
 		String username;
 		try {
-			ResultSet result=ld.fetchlogin(lp);
+			ResultSet result=rd.fetchlogin(rp);
 			if(result.next()) {
 				//res.sendRedirect("AdminMain.html");
-				ResultSet rs=ld.validUser(email, password);
+				ResultSet rs=rd.validUser(email, password);
 				rs.next();
 				
 				userid=rs.getInt(1);
@@ -47,9 +47,8 @@ public class loginServlet extends HttpServlet
 					res.sendRedirect("AdminMain.jsp");
 				}
 				else if(role.equals("student")){
-					RegisterPojo rp=new RegisterPojo(userid);
-					RegisterDao rd=new RegisterDao();
-					rd.updateactivedate(rp);
+					RegisterPojo rp1=new RegisterPojo(userid);
+					rd.updateactivedate(rp1);
 					res.sendRedirect("UserMain.jsp");
 				}
 				else if(role.equals("inactive")) {

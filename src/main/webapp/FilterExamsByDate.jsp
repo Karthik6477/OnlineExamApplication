@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
     <%@page import="java.sql.ResultSet"%>
-    <%@page import="com.onlineexam.controller.ShowUsersDetails"%>
     <%@page import="com.onlineexam.impl.*"%>
     <%@page import="com.onlineexam.model.*" %>
     <%@page import="java.util.Date" %>
@@ -47,9 +46,12 @@ text-align:center;
 	
 	<center><a href="ShowUsersExams.jsp"><button>View all</button></a></center><br><br>
 	
-	<%String examdate=request.getParameter("date");
-	ScoreDetails sd=new ScoreDetails(examdate);
-	ResultSet rs=ScoreDetailsDao.filterbydate(sd); %>
+	<%
+		String examdate=request.getParameter("date");
+			ScoreDetailsPojo sd=new ScoreDetailsPojo(examdate);
+			ScoreDetailsDao sdd=new ScoreDetailsDao();
+			ResultSet rs=sdd.filterbydate(sd);
+		%>
 	<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
             <th>Student Id</th>

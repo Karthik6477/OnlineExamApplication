@@ -36,11 +36,15 @@ Password   :Karthik@6477
 
 7.Admin Can filter exam report by date.
 
-8.Admin Can make user as inactive and active
+8.Admin Can filter exam report by Grade.
 
-9.Admin Can view user's last active date.
+9.Admin Can filter exam report by Pass or Fail.
 
-10.Admin can view user's feedbacks and complaints.
+10.Admin Can make user as inactive and active
+
+11.Admin Can view user's last active date.
+
+12.Admin can view user's feedbacks and complaints.
 
 ## User
 

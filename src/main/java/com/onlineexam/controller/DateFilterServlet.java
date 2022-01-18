@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.onlineexam.impl.ScoreDetailsDao;
-import com.onlineexam.model.ScoreDetails;
+import com.onlineexam.model.ScoreDetailsPojo;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,7 +22,7 @@ public class DateFilterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String date=req.getParameter("date");
 		try {
-			ScoreDetails sd=new ScoreDetails(date);
+			ScoreDetailsPojo sd=new ScoreDetailsPojo(date);
 			ScoreDetailsDao sdd=new ScoreDetailsDao();
 			sdd.filterbydate(sd);
 			resp.sendRedirect("FilterExamsByDate.jsp?examdate="+date);

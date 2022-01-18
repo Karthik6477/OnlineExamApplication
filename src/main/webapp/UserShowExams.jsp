@@ -1,4 +1,4 @@
-<%@page import="com.onlineexam.controller.ShowExamDetails"%>
+<%@page import="com.onlineexam.impl.ExamDetailsDao"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -25,7 +25,8 @@ body{
 <body>
 	<a href="UserMain.jsp"><h4 style="float: right;margin-right:10px;">Home</h4></a>
 	<h2>Exams</h2>
-	<% ResultSet rs=ShowExamDetails.showExams();
+	<% ExamDetailsDao edd=new ExamDetailsDao();
+	ResultSet rs=edd.showExams();
 	%>
 	<table style="width: 80%;margin-left: 100px;">
         <tr>

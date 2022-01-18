@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import com.onlineexam.impl.RegisterDao;
 import com.onlineexam.impl.ScoreDetailsDao;
 import com.onlineexam.model.RegisterPojo;
-import com.onlineexam.model.ScoreDetails;
+import com.onlineexam.model.ScoreDetailsPojo;
 
 import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,7 +22,7 @@ public class ScoreDetailsServlet extends HttpServlet {
 		int score=Integer.parseInt(req.getParameter("score"));
 		String passOrFail=req.getParameter("passOrFail");
 		String grade=req.getParameter("grade");
-		ScoreDetails sd=new ScoreDetails(userId,ExamId,ExamName,score,passOrFail,grade);
+		ScoreDetailsPojo sd=new ScoreDetailsPojo(userId,ExamId,ExamName,score,passOrFail,grade);
 		//RegisterPojo rp=new RegisterPojo(userId);
 		ScoreDetailsDao sdd=new ScoreDetailsDao();
 		//RegisterDao rd=new RegisterDao();

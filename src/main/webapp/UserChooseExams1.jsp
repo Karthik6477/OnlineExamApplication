@@ -1,4 +1,3 @@
-<%@page import="com.onlineexam.controller.ShowExamDetails"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.onlineexam.impl.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

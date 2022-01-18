@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" %>
     <%@page import="java.sql.ResultSet"%>
-    <%@page import="com.onlineexam.controller.ShowUsersDetails"%>
     <%@page import="com.onlineexam.impl.*"%>
     <%@page import="com.onlineexam.model.*" %>
 <!DOCTYPE html>
@@ -46,7 +45,8 @@ text-align:center;
 	<br><br>
 	
 	<%
-	ResultSet rs=ShowUsersDetails.viewAllScore(); %>
+	ScoreDetailsDao sdd=new ScoreDetailsDao();
+	ResultSet rs=sdd.viewAllScore(); %>
 	<table style="width: 80%;margin-left: 100px;font-size:large;">
         <tr>
             <th>Student Id</th>

@@ -16,7 +16,7 @@
         <li><a class="a1 big" href="index.jsp?message=<%ses.setAttribute("logout", "Logged out successfully");%>">Logout</a></li>
         <li><a class="a1 big" href="ShowCommentsAdmin.jsp">Contact us</a></li>
         <li><a class="a1 big" href="AboutUsAdmin.jsp">About us</a></li>
-        <li><a class="a1 big" href="ShowFeedbackAdmin.jsp">Feedback</a></li>
+        <li><a class="a1 big" href="ShowFeedbackAdmin.jsp">Feedbacks</a></li>
         <li><a class="a1 big" href="ExamDetails.jsp">Admin Actions</a></li>
     </ul>
     <img src="images/onlineExamIcon.png" class="imgIcon">

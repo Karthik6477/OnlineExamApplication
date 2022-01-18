@@ -15,4 +15,11 @@ public interface RegisterDaoInterface {
 	public void changephoto(RegisterPojo rp) throws SQLException;
 	public void editprofile(RegisterPojo rp) throws SQLException;
 	public void userrequest(RegisterPojo rp) throws SQLException;
+	public void updatelastdate(RegisterPojo rp) throws SQLException;
+	public void updateactivedate(RegisterPojo rp) throws SQLException;
+	public  ResultSet showUsers();
+	public  ResultSet showInactiveUsers();
+	public ResultSet fetchlogin(RegisterPojo rp) throws SQLException, ClassNotFoundException;
+	public  ResultSet validUser(String email,String password) throws ClassNotFoundException, SQLException;
+	public ResultSet userprofile(int userid) throws SQLException;
 }
