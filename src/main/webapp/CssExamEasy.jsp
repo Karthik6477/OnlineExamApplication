@@ -53,7 +53,7 @@ font-size:30px;
   color: white;
   transition: 2ms;
 }
-#finish,#feed,#hour,#min,#colon,#next{
+#finish,#feed,#hour,#min,#colon,#next,#music,#complete,#timeup{
 	visibility:hidden;
 }
 #result{
@@ -82,6 +82,14 @@ font-size:x-large;
 margin-top:210px;
 margin-left:630px;
 }
+.timeupalign{
+	font-size:xx-large;
+	font-weight:bolder;
+	margin-top:170px;
+}
+.form{
+margin-top:-400px;
+}
 </style>
 <title>CSS Exam</title>
 </head>
@@ -102,7 +110,7 @@ int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 	<div id="clock">
     <b id="hour"></b><label> &nbsp;<span id="colon">:</span>&nbsp;</label><b id="min"></b>
 </div>
-<br> <button id="startButton" onclick="clcok()" class="button examButton start">Start</button>
+<br> <button id="startButton" onclick="clcok();play()" class="button examButton start">Start</button>
 	
 	<div style="margin-top:-250px;">
 	<div class="questions" id="question1">
@@ -198,24 +206,17 @@ int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 	
 </div>
 
-<!-- <div id="finish" style="text-align:center;">
-<form action="scoreDetails" >
-<input style="visibility:hidden;" type="text" id="examId" name="examId" value="<%=examId%>">
-<input style="visibility:hidden;" type="text" id="examName" name="examName" value="<%=examName%>">
-<input style="visibility:hidden;" type="text" id="studentId" name="uID" value="<%=userid%>"/>
-<input style="visibility:hidden;" type="text" id="score" name="score">
-<input style="visibility:hidden;" type="text" id="passOrFail" name="passOrFail">
-<input style="visibility:hidden;" type="text" id="grade" name="grade">
-<center><button class="button examButton" style="margin-top:5px;">View my Exam</button></center> 
-</form></div>-->
 <p id="result"></p>
 <p id="passFail"></p>
 <p id="studentGrade"></p>
+<div id="timeup" class="timeupalign">
+<center><p>Your time is up!....</p></center>
+<center><p>You have to submit exam</p></center></div>
 <div id="feed">
 <a href="feedbackDetails.jsp?examid=<%=examId%>&userid=<%=userid%>"><center><button class="button examButton" style="margin-top:100px;">Send feedback</button></center>&nbsp;&nbsp;</a>
 </div>
-
-<div id="buttons">
+<audio src="musics/exam_music.mp3" id="music"></audio>
+<div id="buttons" class="form">
 <form action="scoreDetails" >
 <input style="visibility:hidden;" type="text" id="examId" name="examId" value="<%=examId%>">
 <input style="visibility:hidden;" type="text" id="examName" name="examName" value="<%=examName%>">
@@ -223,23 +224,12 @@ int duration=Integer.parseInt(session1.getAttribute("duration").toString());
 <input style="visibility:hidden;" type="text" id="score" name="score">
 <input style="visibility:hidden;" type="text" id="passOrFail" name="passOrFail">
 <input style="visibility:hidden;" type="text" id="grade" name="grade">
-<button id="submit" onclick="ans()" style="margin-left:650px;margin-top:170px;" class="button examButton">submit</button>
+<center><button id="submit" onclick="ans();pause()" style="text-align:center;margin-top:270px;" class="button examButton">Submit</button></center>
 </form></div>
 <div>
-<button id="next" onclick="qu()" style="margin-left:650px;margin-top:-200px;" class="button examButton">Next</button>
+<center><button id="next" onclick="qu()" style="text-align:center;margin-top:-290px;" class="button examButton">Next</button></center>
 
 </div>
-
-
-
-
-<!--<div id="feedback">
-<form action="feedbackDetails.jsp">
-<input style="visibility:hidden;" type="text" id="examId" name="examId" value="<%=examId%>">
-<input style="visibility:hidden;" type="text" id="examName" name="examName" value="<%=examName%>">
-<input style="visibility:hidden;" type="text" id="studentId" name="uID" value="<%=userid%>"/>
-<button>Send feedback</button>
-</form></div>-->
 
 </body>
 </html>
@@ -270,8 +260,7 @@ function ans(){
      document.getElementById("question9").style.visibility="hidden";
      document.getElementById("question10").style.visibility="hidden";
      
-	
-	
+
 		//answer 1
 		const rbs=document.querySelectorAll('input[name="answer1"]');
 		for(const rb of rbs){
@@ -383,12 +372,6 @@ function ans(){
 			}
 		}
 		
-		//document.getElementById("finish").style.visibility="visible";
-		//document.getElementById("feed").style.visibility="visible";
-		//document.getElementById("home").style.visibility="visible";
-		console.log(mark);
-		//document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
-		//return mark;
 
 		   clearInterval(inter);
 		
@@ -401,37 +384,28 @@ function ans(){
 		if(mark>=5){
 			
 			document.getElementById("passOrFail").value="pass";
-			//document.getElementById("passFail").innerHTML="You have passed";
 			if(mark==5){
 				document.getElementById("grade").value="E";
-				//document.getElementById("studentGrade").innerHTML="Your grade is : E";
 			}
 			else if(mark==6){
 				document.getElementById("grade").value="D";
-				//document.getElementById("studentGrade").innerHTML="Your grade is : D";
 			}
 			else if(mark==7){
 				document.getElementById("grade").value="C";
-				//document.getElementById("studentGrade").innerHTML="Your grade is : C";
 			}
 			else if(mark==8){
 				document.getElementById("grade").value="B";
-				//document.getElementById("studentGrade").innerHTML="Your grade is : B";
 			}
 			else if(mark==9){
 				document.getElementById("grade").value="A";
-				//document.getElementById("studentGrade").innerHTML="Your grade is : A";
 			}
 			else if(mark==10){
 				document.getElementById("grade").value="O";
-				//document.getElementById("studentGrade").innerHTML="Your grade is : O";
 			}
 		}
 		else{
 			document.getElementById("passOrFail").value="fail";
-			//document.getElementById("passFail").innerHTML="You have failed";
 			document.getElementById("grade").value="RA";
-			//document.getElementById("studentGrade").innerHTML="Your grade is : RA";
 		}
 
 }
@@ -651,7 +625,7 @@ hour--;
 console.log(hour);
  min=60;
 }
-if(hour==7 && min==1){
+if(hour==3 && min==1){
 document.getElementById("hour").style.color="red";
 document.getElementById("min").style.color="red";
 }
@@ -659,8 +633,6 @@ min--;
 document.getElementById("hour").innerHTML=hour;
 document.getElementById("min").innerHTML=min;
 if(hour==0 && min==0)  {
-    document.getElementById("hour").innerHTML="--";
-    document.getElementById("min").innerHTML="--";
 	 document.getElementById("question1").style.visibility="hidden";
      document.getElementById("question2").style.visibility="hidden";
      document.getElementById("question3").style.visibility="hidden";
@@ -674,157 +646,27 @@ if(hour==0 && min==0)  {
 
      document.getElementById("buttons").style.visibility="hidden";
      mark=0;
-
-		//answer 1
-		const rbs=document.querySelectorAll('input[name="answer1"]');
-		for(const rb of rbs){
-			if(rb.checked){
-				//selectedvalue=rb.value;
-				if(rb.value=="style"){
-					mark++;
-				}
-				break;
-			}
-		}
-		
-		//answer 2
-		const rbs2=document.querySelectorAll('input[name="answer2"]');
-		for(const rb2 of rbs2){
-			if(rb2.checked){
-				if(rb2.value=="background-image"){
-					mark++;
-				}
-				break;
-			}
-		}
-		
-		//answer 3
-		const rbs3=document.querySelectorAll('input[name="answer3"]');
-		for(const rb3 of rbs3){
-			if(rb3.checked){
-				if(rb3.value=="p {background-color : yellow;}"){
-					mark++;
-				}
-				break;
-			}
-		}
-		
-		//answer 4
-		const rbs4=document.querySelectorAll('input[name="answer4"]');
-		for(const rb4 of rbs4){
-			if(rb4.checked){
-				if(rb4.value=="a {text-decoration : none;}"){
-					mark++;
-				}
-				break;
-			}
-		}
-		
-		//answer 5
-		const rbs5=document.querySelectorAll('input[name="answer5"]');
-		for(const rb5 of rbs5){
-			if(rb5.checked){
-				if(rb5.value=="padding"){
-					mark++;
-				}
-				break;
-			}
-		}
-		
-		//answer 6
-		const rbs6=document.querySelectorAll('input[name="answer6"]');
-		for(const rb6 of rbs6){
-			if(rb6.checked){
-				if(rb6.value=="font-weight : bold"){
-					mark++;
-				}
-				break;
-			}
-		}
-		
-		//answer 7
-		const rbs7=document.querySelectorAll('input[name="answer7"]');
-		for(const rb7 of rbs7){
-			if(rb7.checked){
-				if(rb7.value=="No"){
-					mark++;
-				}
-				break;
-			}
-		}
-		
-		//answer 8
-		const rbs8=document.querySelectorAll('input[name="answer8"]');
-		for(const rb8 of rbs8){
-			if(rb8.checked){
-				if(rb8.value=="margin"){
-					mark++;
-				}
-				break;
-			}
-		}
-		
-		//answer 9
-		const rbs9=document.querySelectorAll('input[name="answer9"]');
-		for(const rb9 of rbs9){
-			if(rb9.checked){
-				if(rb9.value=="opacity"){
-					mark++;
-				}
-				break;
-			}
-		}
-		
-		//answer 10
-		const rbs10=document.querySelectorAll('input[name="answer10"]');
-		for(const rb10 of rbs10){
-			if(rb10.checked){
-				if(rb10.value=="vertical-align: sub"){
-					mark++;
-				}
-				break;
-			}
-		}
-		
-		//document.getElementById("finish").style.visibility="visible";
-		//document.getElementById("feed").style.visibility="visible";
-		//document.getElementById("home").style.visibility="visible";
-		console.log(mark);
-		//document.getElementById("result").innerHTML="Your Mark Is: "+mark;	
-		//return mark;
-
+     
+     document.getElementById("timeup").style.visibility="visible";
 		   clearInterval(inter);
 		
 		document.getElementById("buttons").style.visibility="hidden";
 		document.getElementById("css").style.visibility="hidden";
 		document.getElementById("score").value=mark;
-		if(mark>=5){
-			
-			document.getElementById("passOrFail").value="pass";
-			if(mark==5){
-				document.getElementById("grade").value="E";
-			}
-			else if(mark==6){
-				document.getElementById("grade").value="D";
-			}
-			else if(mark==7){
-				document.getElementById("grade").value="C";
-			}
-			else if(mark==8){
-				document.getElementById("grade").value="B";
-			}
-			else if(mark==9){
-				document.getElementById("grade").value="A";
-			}
-			else if(mark==10){
-				document.getElementById("grade").value="O";
-			}
-		}
-		else{
-			document.getElementById("passOrFail").value="fail";
-			document.getElementById("grade").value="RA";
-		}	
+		
+		var audio = document.getElementById("music");
+		  audio.pause();
+		  
 }
 
 }
+
+function play() {
+  var audio = document.getElementById("music");
+  audio.play();
+}
+function pause() {
+	  var audio = document.getElementById("music");
+	  audio.pause();
+	}
 </script>

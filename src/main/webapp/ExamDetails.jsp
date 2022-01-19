@@ -52,12 +52,12 @@
    
 	<h2 style="margin-left: 80px;"><u>List of Exams</u></h2>
    <a href="ShowExams.jsp"><button type="submit" class="button examButton">Show Exams</button></a><br>
-   <h2><u>List of Users</u></h2>
-   <a href="ShowUsers.jsp"><button type="submit" class="button examButton">Show Users</button></a><br>
-   <h2><u>List of Exams completed by Users</u></h2>
-   <a href="ShowUsersExams.jsp"><button type="submit" class="button examButton">Show all exams</button></a><br>
+   <h2><u>List of Exams report</u></h2>
+   <a href="ShowUsersExams.jsp"><button type="submit" class="button examButton">Show Exams report</button></a><br>
+   <h2><u>List of Active Users</u></h2>
+   <a href="ShowUsers.jsp"><button type="submit" class="button examButton">Show Active Users</button></a><br>
    <h2><u>List of Inactive Users</u></h2>
-   <a href="ShowInactiveUsers.jsp"><button type="submit" class="button examButton">Show inactive users</button></a>
+   <a href="ShowInactiveUsers.jsp"><button type="submit" class="button examButton">Show Inactive users</button></a>
    </div>
 </body>
 </html>

@@ -23,7 +23,7 @@ public class InactiveUsersServlet extends HttpServlet {
 		RegisterDao rd=new RegisterDao();
 		try {
 			rd.makeactive(rp);
-			session.setAttribute("madeactive", "Made us active");
+			session.setAttribute("madeactive", "Made as active");
 			resp.sendRedirect("ShowInactiveUsers.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

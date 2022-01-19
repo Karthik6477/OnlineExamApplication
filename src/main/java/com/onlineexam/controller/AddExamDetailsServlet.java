@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.onlineexam.exception.ExamIdAlreadyExistException;
 import com.onlineexam.impl.ExamDetailsDao;
 import com.onlineexam.model.ExamDetailsPojo;
 
