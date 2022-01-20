@@ -24,14 +24,11 @@ public class loginServlet extends HttpServlet
 		String password=req.getParameter("password");
 		RegisterPojo rp=new RegisterPojo(0,email,password);
 		RegisterDao rd=new RegisterDao();
-		//LoginPojo lp=new LoginPojo(email, password);
-		//LoginDao ld=new LoginDao();
 		int userid;
 		String username;
 		try {
 			ResultSet result=rd.fetchlogin(rp);
 			if(result.next()) {
-				//res.sendRedirect("AdminMain.html");
 				ResultSet rs=rd.validUser(email, password);
 				rs.next();
 				
@@ -40,7 +37,6 @@ public class loginServlet extends HttpServlet
 				HttpSession ses=req.getSession();
 				ses.setAttribute("userid", userid);
 				ses.setAttribute("username", username);
-				
 				
 				String role=rs.getString(8);
 				if(role.equals("admin")) {
@@ -58,26 +54,17 @@ public class loginServlet extends HttpServlet
 				else {
 					HttpSession session=req.getSession();
 					session.setAttribute("loginResult","Invalid username or password");
-					
-						
-				
-					//res.getWriter().println("Invalid Username or password!!");
 				}
 			}
 			else {
 				throw new InvalidUserException();
 			}}
 			catch(InvalidUserException iv) {
-//				String clear=iv.invaliduser();
-				
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Invalid email id or password');");
 				out.println("location='index.jsp';");
 				out.println("</script>");
 				
-				//res.sendRedirect("errorpage.jsp?message="+iv.getMessage()+"&url=index.jsp");
-			
-//			
 		}catch(InactiveUserException e) {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('You are in inactive mode.Request admin to activate');");

@@ -31,6 +31,25 @@ margin-top:-535px;
 font-weight:bolder;
 color:black;    	
 }
+.buttons {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius:4px;
+}
+.button2 {
+background-color: #008CBA;
+}
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 </style>
 <title>Password changing</title>
 </head>
@@ -58,7 +77,7 @@ color:black;
 	<input type="password"  pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&?/*$^]).{8,16}$" title="Minimum 8 characters should be there.There should be atleast one numeric,special character,capital letter and small letter." name="password" id="password" required placeholder="password" minlength="8" maxlength="16"><br><br>
 	<label for="cpassword">Confirm new password:</label><br>
     <input type="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&?/*$^]).{8,16}$" title="confirm password must be same as password" name="cpassword" id="cpassword" required minlength="8" maxlength="16"><br><br>
-	<button type="submit">Change Password</button>
+	<button type="submit" class="buttons button2">Change Password</button>
 	
 	
 	</form>

@@ -22,7 +22,7 @@ body{
 }
 .registerform{
     background-color: whitesmoke;
-    height: 500px;
+    height: 530px;
     width: 400px;
     position: absolute;
     left: 480px;
@@ -54,6 +54,25 @@ body{
     left: 45px;
     top: 20px;
  }
+ .buttons {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius:4px;
+}
+.button2 {
+background-color: #008CBA;
+}
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 </style>
 </head>
 <script>
@@ -98,8 +117,8 @@ body{
                 <input type="text" pattern="[6-9]{1}[0-9]{9}" name="phone_number" id="phone_number" required
                     minlength="10" maxlength="10"><br><br><br><br>
                     
-                    <button type="submit" style="margin-left:-15px;">Submit</button>&nbsp;&nbsp;
-                <button type="reset">Reset</button><br>
+                    <button type="submit" style="margin-left:-35px;color:white" class="buttons button2">Submit</button>&nbsp;&nbsp;
+                <button type="reset" style="color:white" class="buttons button2">Reset</button><br>
                 
                 
                 

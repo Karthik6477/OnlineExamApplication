@@ -25,14 +25,16 @@ public class DeleteExamDetailsServlet extends HttpServlet {
 		try {
 			boolean flag=ed.deleteExam(edp);
 			if(flag) {
-				HttpSession session=req.getSession();
-				session.setAttribute("deleteExamResult","Exam deleted successfully");
-				res.sendRedirect("ShowExams.jsp");
+				//HttpSession session=req.getSession();
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Exam deleted successfully');");
+				out.println("location='ShowExams.jsp';");
+				out.println("</script>");
+//				session.setAttribute("deleteExamResult","Exam deleted successfully");
+//				res.sendRedirect("ShowExams.jsp");
 			}
 			else {
 				throw new ExamNotDeleteException();
-//				HttpSession session=req.getSession();
-//				session.setAttribute("deleteExamResult","Couldn't delete exam");
 			}
 		}
 		
@@ -46,7 +48,6 @@ public class DeleteExamDetailsServlet extends HttpServlet {
 				out.println("alert('Exam already registered, so could not delete');");
 				out.println("location='ShowExams.jsp';");
 				out.println("</script>");
-				//res.sendRedirect("errorpage.jsp?message="+end.getMessage()+"&url=ShowExams.jsp");
 			}
 			
 			e.printStackTrace();

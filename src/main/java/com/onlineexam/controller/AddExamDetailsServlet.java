@@ -1,6 +1,7 @@
 package com.onlineexam.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 public class AddExamDetailsServlet extends HttpServlet {
 	//method for adding exam
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException {
+		PrintWriter out=res.getWriter();
 		String examName=req.getParameter("examName");
 		String examType=req.getParameter("examType");
 		String difficultyLevel=req.getParameter("difficultyLevel");
@@ -31,8 +33,12 @@ public class AddExamDetailsServlet extends HttpServlet {
 			session.setAttribute("duration", duration);
 			boolean flag=ed.addExam(edp);
 			if(flag) {
-				session.setAttribute("addExamResult","Exam added successfully");
-				res.sendRedirect("ShowExams.jsp");
+				out.println("<script type=\"text/javascript\">");
+				out.println("alert('Exam added successfully');");
+				out.println("location='ShowExams.jsp';");
+				out.println("</script>");
+//				session.setAttribute("addExamResult","Exam added successfully");
+//				res.sendRedirect("ShowExams.jsp");
 			}
 			
 		} catch (SQLException e) {

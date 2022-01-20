@@ -24,6 +24,25 @@ body{
 h1{
 text-align:center;
 }
+.buttons {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius:4px;
+}
+.button2 {
+background-color: #008CBA;
+}
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
 </style>
 <title>List of exams</title>
 </head>
@@ -32,19 +51,19 @@ text-align:center;
 		<a id="ExamDetails" href="ExamDetails.jsp"><h4 style="float: right;margin-right:10px;margin-top:-50px;font-size:x-large;color:black;"><u>Back</u></h4></a>
 	<div style="margin-left:100px;"><form action="FilterExamsByDate.jsp" method="post">
 	<h3>Filter by date <input type="date" name="date"></h3>
-	<button type="submit" style="margin-left:75px;">submit</button></form>
+	<button type="submit" style="margin-left:75px;" class="buttons button2">Filter</button></form>
 	
-	<div style="margin-left:330px;margin-top:-80px;">
+	<div style="margin-left:330px;margin-top:-100px;">
 	<form action="FilterExamsByPOF.jsp" method="post">
 	<h3>Filter by pass or fail <input type="text" name="pof"></h3>
-	<button type="submit" style="margin-left:140px;">submit</button></form></div>
+	<button type="submit" style="margin-left:140px;" class="buttons button2">Filter</button></form></div>
 	
-	<div style="margin-left:750px;margin-top:-80px;">
+	<div style="margin-left:750px;margin-top:-100px;">
 	<form action="FilterExamsByGrade.jsp" method="post">
 	<h3>Filter by Grade <input type="text" name="grade"></h3>
-	<button type="submit" style="margin-left:120px;">submit</button></form></div></div><br><br>
+	<button type="submit" style="margin-left:120px;" class="buttons button2">Filter</button></form></div></div><br><br>
 	
-	<center><a href="ShowUsersExams.jsp"><button>View all</button></a></center><br><br>
+	<center><a href="ShowUsersExams.jsp"><button class="buttons button2">View all</button></a></center><br><br>
 	
 	<%
 		String grade=request.getParameter("grade");
