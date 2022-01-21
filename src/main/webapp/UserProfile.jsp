@@ -21,10 +21,10 @@ body {
 }
 .container{
 text-align:center;
-margin-top:80px;
+margin-top:45px;
 }
 a{
-margin-top:-55px;
+margin-top:-20px;
 font-size:x-large;
 font-weight:bolder;
 }
@@ -38,7 +38,27 @@ margin-left:25px;
 margin-left:-30px;
 }
 img{
+margin-left:90px;
 border:3px groove black;
+}
+.buttons {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius:4px;
+}
+.button2 {
+background-color: #008CBA;
+}
+.button2:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 </style>
 <title>User Profile</title>
@@ -52,11 +72,11 @@ border:3px groove black;
 	<%while(rs.next()){%>
 		<img src="images/<%=rs.getString(9) %>" style="border-radius:50%;height:250px;width:260px;border-color:black"><br><br>
 		
-		<center><button id="photo" onclick="photochange()" style="display: block;">Change photo</button></center>
+		<center><button id="photo" onclick="photochange()" style="display: block;" class="buttons button2">Change photo</button></center>
 		<div id="photochange" style="display: none;">
 		<form action="changeprofile" method="post">
-		<input type="file" id="avatar" name="avatar" class="choosefile"><br><br>
-		<button type="submit">Change photo</button>
+		<input type="file" id="avatar" name="avatar" class="choosefile buttons button2"><br><br>
+		<button type="submit" class="buttons button2">Change photo</button>&nbsp;&nbsp;<button type="button" class="buttons button2" onclick="hidechange()">Cancel</button>
 		</form></div>
 		<br>
 		<form action="editprofile" method="post">
@@ -64,7 +84,7 @@ border:3px groove black;
 		<label for="lastname">Lastname : </label><input type="text" name="lastname" id="lastname" value="<%=rs.getString(3) %>"><br><br>
 		<label for="email" class="emailalign">Email : </label><input type="email" name="email" id="email" value="<%=rs.getString(4) %>" readonly><br><br>
 		<label for="phone" class="phonealign">Phone number : </label><input type="text" name="phone" id="phone" value="<%=rs.getLong(7) %>"><br><br>
-		<button type="submit">Edit Profile</button>
+		<button type="submit" class="buttons button2">Edit Profile</button>
 		</form></div>
 		
 	<%} %>
@@ -78,6 +98,12 @@ function photochange(){
 	photo.style.display="none";
 	let photochange=document.getElementById("photochange");
 	photochange.style.display="block";
+}
+function hidechange(){
+	var add=document.getElementById("photo");
+	add.style.display="block";
+	var addexam=document.getElementById("photochange");
+	addexam.style.display="none";
 }
 </script>
 </html>

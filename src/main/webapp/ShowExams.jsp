@@ -121,7 +121,7 @@ ExamDetailsDao ed=new ExamDetailsDao();
 				<br></div>
 
 				</div>
-				<button type="submit" class="button examButton">Add Exam</button>&nbsp;&nbsp;<button type="submit" class="button examButton" onclick="hideadd()">Cancel</button>
+				<button type="submit" class="button examButton">Add Exam</button>&nbsp;&nbsp;<button type="button" class="button examButton" onclick="hideadd()">Cancel</button>
 				<br> <br>
 		</div>
 	</div>

@@ -25,13 +25,10 @@ public class DeleteExamDetailsServlet extends HttpServlet {
 		try {
 			boolean flag=ed.deleteExam(edp);
 			if(flag) {
-				//HttpSession session=req.getSession();
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Exam deleted successfully');");
 				out.println("location='ShowExams.jsp';");
 				out.println("</script>");
-//				session.setAttribute("deleteExamResult","Exam deleted successfully");
-//				res.sendRedirect("ShowExams.jsp");
 			}
 			else {
 				throw new ExamNotDeleteException();

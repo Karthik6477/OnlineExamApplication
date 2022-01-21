@@ -48,7 +48,6 @@ public class ExamDetailsDao implements ExamDetailsDaoInterface{
 		PreparedStatement pstmt=con.prepareStatement(query);
 		pstmt.setInt(1, edp.getExamId());
 		i=pstmt.executeUpdate();
-		System.out.println(i);
 		if(i>0) {
 			return true;
 		}
